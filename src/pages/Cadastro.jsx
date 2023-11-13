@@ -5,10 +5,31 @@ import ReactDOM from "react-dom/client";
 function Cadastro(){
 
     const [cep, setCep] = useState("");
+    const [nome, setNome] = useState("");
+    const [dataNascimento, setDataNascimento] = useState("");
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [logradouro, setLogradouro] = useState("");
+    const [numeroLogradouro, setNumeroLogradouro] = useState("");
+    const [bairro, setBairro] = useState("");
+    const [cidade, setCidade] = useState("");
+    const [UF, setUF] = useState("");
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        pesquisarCEP(cep);
+    const cadastrarUsuario = async (e) => {
+        e.preventDefault();
+
+        const title = "Cadastro";
+        const body = [nome, dataNascimento, email, senha, logradouro, numeroLogradouro, bairro, cidade, UF]
+        const post = {title, body}
+        try
+        {
+            // const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : post});
+            console.log(title, body);
+        }
+        catch (error)
+        {
+            console.log(error);
+        }
     }
 
     function pesquisarCEP(valor){
@@ -91,39 +112,39 @@ function Cadastro(){
                     <p className="font-medium text-2xl text-left self-start">Criar minha conta</p>
                     <div className="flex flex-col items-center pt-5 w-full">
                         <p className="text-left text-xl w-full mb-5">Boa, vamos começar!</p>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={(e) => cadastrarUsuario(e)}>
                             <label className="text-left w-full ps-5">Qual seu nome e sobrenome?</label>
-                            <input type="text" name="nome" id="nome" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe pra gente seu nome completo"/>
+                            <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} name="nome" id="nome" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe pra gente seu nome completo"/>
                             <label className="text-left w-full ps-5">Qual é o seu aniversário?</label>
-                            <input type="number" name="aniversario" id="aniversario" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informa pra gente sua data de nascimento"/>
+                            <input type="number" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} name="aniversario" id="aniversario" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informa pra gente sua data de nascimento"/>
                             <label className="text-left w-full ps-5">Qual é o seu email?</label>
-                            <input type="text" name="email" id="email" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe um email"/>
+                            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} name="email" id="email" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe um email"/>
                             <label className="text-left w-full ps-5">Digite uma senha:</label>
-                            <input type="password" name="senha" id="senha" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Digite uma senha"/>
+                            <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} name="senha" id="senha" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Digite uma senha"/>
                             <div className="w-full flex justify-between">
                                 <div className="w-6/12 flex flex-col justify-center pe-2">
                                     <label className="text-center w-full">Endereço</label>
-                                    <input id="endereco" name="endereco" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Endereço" disabled></input>
+                                    <input value={logradouro} onChange={(e) => setLogradouro(e.target.value)} id="endereco" name="endereco" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Endereço"></input>
                                 </div>
                                 <div className="w-6/12 flex flex-col justify-center ps-2 items-end">
                                     <label className="text-center w-full">Numero</label>
-                                    <input id="numeroEndereco" name="numeroEndereco" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Numero"></input>
+                                    <input value={numeroLogradouro} onChange={(e) => setNumeroLogradouro(e.target.value)} id="numeroEndereco" name="numeroEndereco" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Numero"></input>
                                 </div>
                             </div>
                             <div className="w-full flex justify-between">
                                 <div className="w-6/12 flex flex-col justify-center pe-2">
                                     <label className="text-center w-full">Bairro</label>
-                                    <input id="bairro" name="bairro" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Bairro" disabled></input>
+                                    <input value={bairro} onChange={(e) => setBairro(e.target.value)} id="bairro" name="bairro" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Bairro"></input>
                                 </div>
                                 <div className="w-6/12 flex flex-col justify-center ps-2 items-end">
                                     <label className="text-center w-full">Cidade</label>
-                                    <input id="cidade" name="cidade" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Cidade" disabled></input>
+                                    <input value={cidade} onChange={(e) => setCidade(e.target.value)} id="cidade" name="cidade" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Cidade"></input>
                                 </div>
                             </div>
                             <div className="w-full flex justify-between">
                                 <div className="w-6/12 flex flex-col justify-center pe-2">
                                     <label className="text-center w-full">Estado</label>
-                                    <select id="estado" name="estado" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" disabled>
+                                    <select value={UF} onChange={(e) => setUF(e.target.value)} id="estado" name="estado" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7">
                                         <option value="AC">Acre</option>
                                         <option value="AL">Alagoas</option>
                                         <option value="AP">Amapá</option>
@@ -155,10 +176,7 @@ function Cadastro(){
                                 </div>
                                 <div className="w-6/12 flex flex-col justify-center ps-2 items-end">
                                     <label className="text-center w-full">CEP</label>
-                                    <button>
-                                        Teste
-                                    </button>
-                                    <input type="text" value={cep} onChange={(e) => setCep(e.target.value)} className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="CEP"></input>
+                                    <input type="text" value={cep} onChange={(e) => setCep(e.target.value)} id="CEP" name="CEP" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="CEP"></input>
                                 </div>
                             </div>
                         <input type="submit" value="Cadastrar" className="border w-full h-[3rem] rounded-3xl border-[#18206B] bg-[#18206B] text-white font-medium mt-3"/>

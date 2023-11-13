@@ -22,6 +22,8 @@ $app->get('/entradasMenu','getEntradasMenu');
 $app->get('/bebidas','getBebidas');
 $app->get('/bebidasMenu','getBebidasMenu');
 
+$app->get('/cadastrarUsuario','cadastrarUsuario');
+
 function getConn()
 {
     return new PDO('mysql:host=localhost:3306;dbname=db_warppizza',
@@ -82,6 +84,11 @@ function getBebidasMenu(Request $request, Response $response, array $args)
     $bebidas = $stmt->fetchAll(PDO::FETCH_OBJ);
     $response->getBody()->write(json_encode($bebidas));
     return $response;
+}
+
+function cadastrarUsuario(Request $request, Response $response, array $args)
+{
+    $sql = "INSERT INTO tb_usuario VALUES ()";
 }
 
 $app->run();
