@@ -88,7 +88,8 @@ function getBebidasMenu(Request $request, Response $response, array $args)
 
 function cadastrarUsuario(Request $request, Response $response, array $args)
 {
-    $sql = "INSERT INTO tb_usuario VALUES ()";
+    var_dump($args);
+    // $sql = "INSERT INTO tb_usuario VALUES ()";
 }
 
 $app->run();

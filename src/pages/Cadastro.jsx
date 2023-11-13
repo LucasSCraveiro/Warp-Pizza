@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useEffect, useState, React } from "react";
 import ReactDOM from "react-dom/client";
+import axios from "axios";
 
 function Cadastro(){
 
@@ -23,8 +24,8 @@ function Cadastro(){
         const post = {title, body}
         try
         {
-            // const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : post});
-            console.log(title, body);
+            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : post});
+            // console.log(title, body);
         }
         catch (error)
         {
