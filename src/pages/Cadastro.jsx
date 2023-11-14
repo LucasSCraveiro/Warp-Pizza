@@ -19,9 +19,9 @@ function Cadastro(){
     const cadastrarUsuario = async (e) => {
         e.preventDefault();
 
-        const title = "Cadastro";
-        const body = [nome, dataNascimento, email, senha, logradouro, numeroLogradouro, bairro, cidade, UF]
-        const post = {title, body}
+        const title = "";
+        const body = nome;
+        const post = {title, body};
         try
         {
             const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : post});

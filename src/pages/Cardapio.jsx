@@ -13,15 +13,15 @@ function Cardapio()
     const [bebidas, setBebidas] = useState([]);
 
     function data() {
-        fetch('http://localhost/ApiWarpPizza/pizzasMenu')
+        fetch('http://localhost/Warp-Pizza/ApiWarpPizza/pizzasMenu')
         .then((response) => response.json())
         .then((json) => setPizzas(json))
 
-        fetch('http://localhost/ApiWarpPizza/entradasMenu')
+        fetch('http://localhost/Warp-Pizza/ApiWarpPizza/entradasMenu')
         .then((response) => response.json())
         .then((json) => setEntradas(json))
 
-        fetch('http://localhost/ApiWarpPizza/bebidasMenu')
+        fetch('http://localhost/Warp-Pizza/ApiWarpPizza/bebidasMenu')
         .then((response) => response.json())
         .then((json) => setBebidas(json))
     }
