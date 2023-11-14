@@ -11,6 +11,7 @@ import UsuariosAula from './pages/Usuarios'
 import Posts from './pages/Posts'
 import NovoPost from './pages/NovoPost'
 import MenuFuncionario from './pages/MenuFuncionario'
+import AdicionarPizza from './pages/adicionarPizza'
 import './App.css'
 import './index.css'
 
@@ -31,7 +32,8 @@ function App() {
           <Route path="/usuariosAula" element = { <UsuariosAula/> }/>
           <Route path="/postsAxios" element = { <Posts/>}/>
           <Route path="/novoPost" element = { <NovoPost/> }/>
-          <Route path="/menuFuncionario" element = { <MenuFuncionario/> }/>;
+          <Route path="/menuFuncionario" element = { <MenuFuncionario/> }/>
+          <Route path="/adicionarPizza" element = { <AdicionarPizza/> }/>
         </Routes>
       </BrowserRouter>
     </>

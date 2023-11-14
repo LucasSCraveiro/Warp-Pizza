@@ -55,21 +55,21 @@ function MenuFuncionario(){
                     <div className="w-4/12 flex justify-center">
                         <a className="w-6/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center">
                             <div className="w-full">
-                                <p className="font-semibold text-3xl">Gerenciar Pizzas</p>
+                                <p className="font-semibold text-3xl">Adicionar Pizza</p>
                             </div>
                         </a>
                     </div>
                     <div className="w-4/12 flex justify-center">
                         <a className="w-6/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center">
                             <div className="w-full">
-                                <p className="font-semibold text-3xl">Gerenciar Bebidas</p>
+                                <p className="font-semibold text-3xl">Adicionar Bebida</p>
                             </div>
                         </a>
                     </div>
                     <div className="w-4/12 flex justify-center">
                         <a className="w-6/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center">
                             <div className="w-full">
-                                <p className="font-semibold text-3xl">Gerenciar Entradas</p>
+                                <p className="font-semibold text-3xl">Adicionar Entrada</p>
                             </div>
                         </a>
                     </div>

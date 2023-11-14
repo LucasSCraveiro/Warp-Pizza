@@ -19,12 +19,12 @@ function Cadastro(){
     const cadastrarUsuario = async (e) => {
         e.preventDefault();
 
-        const title = "";
-        const body = nome;
+        const title = "Cadastro";
+        const body = {'Nome': nome,'Nascimento': dataNascimento,'Email': email,'Senha': senha,'Logradouro': logradouro,'NumeroLogradouro': numeroLogradouro,'Bairro': bairro,'Cidade': cidade,'Estado': UF, 'CEP': cep};
         const post = {title, body};
         try
         {
-            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : post});
+            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : post,},{headers : {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
             // console.log(title, body);
         }
         catch (error)
@@ -154,7 +154,7 @@ function Cadastro(){
                                 <div className="w-6/12 flex flex-col justify-center pe-2">
                                     <label className="text-center w-full">Estado</label>
                                     <select value={UF} onChange={(e) => setUF(e.target.value)} id="estado" name="estado" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" disabled>
-                                        <option value="naoSelecionado" selected disabled>Estado</option>
+                                        <option value="naoSelecionado" defaultValue disabled>Estado</option>
                                         <option value="AC">Acre</option>
                                         <option value="AL">Alagoas</option>
                                         <option value="AP">Amapá</option>
@@ -191,7 +191,7 @@ function Cadastro(){
                             </div>
                         <input type="submit" value="Cadastrar" className="border w-full h-[3rem] rounded-3xl border-[#18206B] bg-[#18206B] text-white font-medium mt-3"/>
                         </form>
-                        <a href="#" className="my-3">Cadastrar depois</a>
+                        <a href="/menuFuncionario" className="my-3">Cadastrar depois</a>
                         <div className="flex flex-row">
                         <label className="me-2">Já tem uma conta?</label>
                         <a href="#" className="underline underline-offset-1">Acesse aqui</a>
