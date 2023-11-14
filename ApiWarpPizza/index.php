@@ -23,6 +23,7 @@ $app->get('/bebidas','getBebidas');
 $app->get('/bebidasMenu','getBebidasMenu');
 
 $app->post('/cadastrarUsuario','cadastrarUsuario');
+$app->post('/logarUsuario','logarUsuario');
 
 function getConn()
 {
@@ -90,23 +91,49 @@ function cadastrarUsuario(Request $request, Response $response, array $args)
 {
     // var_dump($request);
     // $sql = "INSERT INTO tb_usuario VALUES ()";
-    $vindo = $request->getParsedBody();
-    $nome = $vindo['body']['body']['Nome'];
-    // $nascimento = $vindo['body']['body']['dataNascimento'];
-    $nascimento = "2002-02-15";
-    $email = $vindo['body']['body']['Email'];
-    $senha = $vindo['body']['body']['Senha'];
-    $logradouro = $vindo['body']['body']['Logradouro'];
-    $numeroLogradouro = $vindo['body']['body']['NumeroLogradouro'];
-    $bairro = $vindo['body']['body']['Bairro'];
-    $cidade = $vindo['body']['body']['Cidade'];
-    $estado = $vindo['body']['body']['Estado'];
-    $cep = $vindo['body']['body']['CEP'];
+
+    $formulario = $request->getParsedBody();
+    // var_dump($formulario);
+    $nome = $formulario['body']['Nome'];
+    $nascimento = $formulario['body']['Nascimento'];
+    $email = $formulario['body']['Email'];
+    $senha = $formulario['body']['Senha'];
+    $logradouro = $formulario['body']['Logradouro'];
+    $numeroLogradouro = $formulario['body']['NumeroLogradouro'];
+    $bairro = $formulario['body']['Bairro'];
+    $cidade = $formulario['body']['Cidade'];
+    $estado = $formulario['body']['Estado'];
+    $cep = $formulario['body']['CEP'];
     $sql = "INSERT INTO tb_usuario (nm_usuario, dt_nascimento_usuario, nm_email_usuario, nm_senha_usuario) VALUES ('$nome','$nascimento','$email','$senha');";
-    $stmt = getConn()->query($sql);
+    $stmt = getConn()->query($sql); // <--- Isso já roda o comando
+
     // $stmt->execute(); <--- Faz com que a inserção ocorra duas vezes
     // $arreio['teste'] = var_dump($vindo);
     // return $response->withStatus(201)->withJson($veio);
+}
+
+function logarUsuario(Request $request, Response $response, array $args)
+{
+    $formulario = $request->getParsedBody();
+    $email = $formulario['body']['Email'];
+    $senha = $formulario['body']['Senha'];
+    $sql = "SELECT * FROM tb_usuario WHERE nm_email_usuario =:email;";
+    $stmt = getConn()->prepare($sql);
+    $stmt->bindParam("email",$email);
+    $stmt->execute();
+    $usuario = $stmt->fetchObject();
+    var_dump($usuario);
+    // $senhaBanco = $usuario['']['nm_senha_usuario'];
+
+    if ($senha == $senhaBanco)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
 }
 
 $app->run();

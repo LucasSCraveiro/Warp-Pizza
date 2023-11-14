@@ -7,7 +7,7 @@ function Navbar(){
                     </a>
                 </div>
                 <div className="flex justify-center items-center w-7/12 md:w-3/12">
-                    <a href="#" className="linkAltura w-5/12">
+                    <a href="/login" className="linkAltura w-5/12">
                         <button className="columns-[5rem] font-bold">Entrar</button>
                     </a>
                     <a href="/cadastro" className="linkAltura w-7/12">

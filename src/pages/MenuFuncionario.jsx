@@ -51,48 +51,51 @@ function MenuFuncionario(){
             </div>
             <hr className="w-full"></hr>
             <div className="w-full flex flex-row justify-center items-center h-full bg-[#f8f2f4]">
-                <div className="flex flex-row justify-evenly w-full flex-wrap gap-y-16">
-                    <div className="w-4/12 flex justify-center">
-                        <a className="w-6/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center">
-                            <div className="w-full">
-                                <p className="font-semibold text-3xl">Adicionar Pizza</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="w-4/12 flex justify-center">
-                        <a className="w-6/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center">
-                            <div className="w-full">
-                                <p className="font-semibold text-3xl">Adicionar Bebida</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="w-4/12 flex justify-center">
-                        <a className="w-6/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center">
-                            <div className="w-full">
-                                <p className="font-semibold text-3xl">Adicionar Entrada</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="w-4/12 flex justify-center">
-                        <a className="w-6/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center">
-                            <div className="w-full">
-                                <p className="font-semibold text-3xl">Cadastrar Cliente</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="w-4/12 flex justify-center">
-                        <a className="w-6/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center">
-                            <div className="w-full">
-                                <p className="font-semibold text-3xl">Realizar Pedido</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="w-4/12 flex justify-center">
-                        <a className="w-6/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="/">
-                            <div className="w-full">
-                                <p className="font-semibold text-3xl">Sair</p>
-                            </div>
-                        </a>
+                <div className="w-8/12 pb-[6rem]">
+                    <p className="font-semibold text-5xl mb-[6rem]">Bem-Vindo Funcionário</p>
+                    <div className="flex flex-row justify-evenly w-full flex-wrap gap-y-16">
+                        <div className="w-4/12 flex justify-center">
+                            <a className="w-8/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="/adicionarPizza">
+                                <div className="w-full">
+                                    <p className="font-semibold text-3xl">Adicionar Pizza</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div className="w-4/12 flex justify-center">
+                            <a className="w-8/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="/adicionarBebida">
+                                <div className="w-full">
+                                    <p className="font-semibold text-3xl">Adicionar Bebida</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div className="w-4/12 flex justify-center">
+                            <a className="w-8/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="/adicionarEntrada">
+                                <div className="w-full">
+                                    <p className="font-semibold text-3xl">Adicionar Entrada</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div className="w-4/12 flex justify-center">
+                            <a className="w-8/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="">
+                                <div className="w-full">
+                                    <p className="font-semibold text-3xl">Cadastrar Cliente</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div className="w-4/12 flex justify-center">
+                            <a className="w-8/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="">
+                                <div className="w-full">
+                                    <p className="font-semibold text-3xl">Realizar Pedido</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div className="w-4/12 flex justify-center">
+                            <a className="w-8/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="/">
+                                <div className="w-full">
+                                    <p className="font-semibold text-3xl">Sair</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

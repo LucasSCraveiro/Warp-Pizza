@@ -3,7 +3,7 @@ import { useEffect, useState, React } from "react";
 import ReactDOM from "react-dom/client";
 import axios from "axios";
 
-function AdicionarPizza(){
+function AdicionarBebida(){
 
     const cadastrarUsuario = async (e) => {
         e.preventDefault();
@@ -44,10 +44,10 @@ function AdicionarPizza(){
                     <div className="w-11/12 pb-3 px-3 bg-white rounded-lg h-[15rem]">
                         <div className="flex py-2 justify-start">
                             <div className="w-7/12 text-left pe-5">
-                                <p className="font-medium text-lg reticencias"><input placeholder="Nome da Pizza"></input></p>
-                                <p className="font-base text-sm mb-5 reticencias h-[3.8rem]"><input placeholder="Descrição da Pizza"></input></p>
+                                <p className="font-medium text-lg reticencias"><input placeholder="Nome da Bebida"></input></p>
+                                <p className="font-base text-sm mb-5 reticencias h-[3.8rem]"><input placeholder="Descrição da Bebida"></input></p>
                                 <p className="text-sm">A partir de</p>
-                                <p className="font-medium">Créditos <input placeholder="Valor da Pizza" type="number" step={0.01} className="w-7/12"></input></p>
+                                <p className="font-medium">Créditos <input placeholder="Valor da Bebida" type="number" step={0.01} className="w-7/12"></input></p>
                             </div>
                             <div className="w-5/12 flex justify-center items-center">
                                 <div className=" border border-gray-400 rounded-lg flex justify-center items-center imagemCardPizza shadow-inner h-[9rem] w-[9rem]">
@@ -71,4 +71,4 @@ function AdicionarPizza(){
     )
 }
 
-export default AdicionarPizza
+export default AdicionarBebida

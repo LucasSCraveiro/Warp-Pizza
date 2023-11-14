@@ -11,7 +11,10 @@ import UsuariosAula from './pages/Usuarios'
 import Posts from './pages/Posts'
 import NovoPost from './pages/NovoPost'
 import MenuFuncionario from './pages/MenuFuncionario'
-import AdicionarPizza from './pages/adicionarPizza'
+import AdicionarBebida from './pages/AdicionarBebida'
+import AdicionarEntrada from './pages/AdicionarEntrada'
+import AdicionarPizza from './pages/AdicionarPizza'
+import Login from './pages/Login'
 import './App.css'
 import './index.css'
 
@@ -33,7 +36,10 @@ function App() {
           <Route path="/postsAxios" element = { <Posts/>}/>
           <Route path="/novoPost" element = { <NovoPost/> }/>
           <Route path="/menuFuncionario" element = { <MenuFuncionario/> }/>
+          <Route path="/adicionarBebida" element = { <AdicionarBebida/> }/>
+          <Route path="/adicionarEntrada" element = { <AdicionarEntrada/> }/>
           <Route path="/adicionarPizza" element = { <AdicionarPizza/> }/>
+          <Route path="/login" element = { <Login/> }/>
         </Routes>
       </BrowserRouter>
     </>

@@ -21,10 +21,10 @@ function Cadastro(){
 
         const title = "Cadastro";
         const body = {'Nome': nome,'Nascimento': dataNascimento,'Email': email,'Senha': senha,'Logradouro': logradouro,'NumeroLogradouro': numeroLogradouro,'Bairro': bairro,'Cidade': cidade,'Estado': UF, 'CEP': cep};
-        const post = {title, body};
+        // const post = {title, body};
         try
         {
-            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : post,},{headers : {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
+            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : body,},{headers : {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
             // console.log(title, body);
         }
         catch (error)
@@ -114,7 +114,7 @@ function Cadastro(){
             <hr className="w-full"></hr>
             <div className="w-8/12 flex flex-row mt-6">
                 <div className="w-6/12 flex flex-col justify-center">
-                    <label className="text-[#18206B] text-3xl">Pizza Ruth, um oferecimento do departamento de desenvolvimento da Federação</label>
+                    <label className="text-[#18206B] text-3xl">Warp Pizza, um oferecimento do departamento de desenvolvimento da Federação</label>
                     <img src="src/assets/images/brasaoFederacaoPizza.png" className="mt-10 mb-3"></img>
                     <label className="text-[#18206B] text-2xl">Powered by Memory Alpha</label>
                 </div>
@@ -125,7 +125,7 @@ function Cadastro(){
                             <label className="text-left w-full ps-5">Qual seu nome e sobrenome?</label>
                             <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} name="nome" id="nome" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe pra gente seu nome completo"/>
                             <label className="text-left w-full ps-5">Qual é o seu aniversário?</label>
-                            <input type="number" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} name="aniversario" id="aniversario" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informa pra gente sua data de nascimento"/>
+                            <input type="date" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} name="aniversario" id="aniversario" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informa pra gente sua data de nascimento"/>
                             <label className="text-left w-full ps-5">Qual é o seu email?</label>
                             <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} name="email" id="email" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe um email"/>
                             <label className="text-left w-full ps-5">Digite uma senha:</label>
@@ -194,7 +194,7 @@ function Cadastro(){
                         <a href="/menuFuncionario" className="my-3">Cadastrar depois</a>
                         <div className="flex flex-row">
                         <label className="me-2">Já tem uma conta?</label>
-                        <a href="#" className="underline underline-offset-1">Acesse aqui</a>
+                        <a href="/login" className="underline underline-offset-1">Acesse aqui</a>
                         </div>
                     </div>
                 </div>
