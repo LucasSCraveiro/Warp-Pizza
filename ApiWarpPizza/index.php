@@ -117,23 +117,20 @@ function logarUsuario(Request $request, Response $response, array $args)
     $formulario = $request->getParsedBody();
     $email = $formulario['body']['Email'];
     $senha = $formulario['body']['Senha'];
-    $sql = "SELECT * FROM tb_usuario WHERE nm_email_usuario =:email;";
+    $sql = "SELECT * FROM tb_usuario WHERE nm_email_usuario =:email AND nm_senha_usuario =:senha";
     $stmt = getConn()->prepare($sql);
     $stmt->bindParam("email",$email);
+    $stmt->bindParam("senha",$senha);
     $stmt->execute();
     $usuario = $stmt->fetchObject();
-    var_dump($usuario);
-    // $senhaBanco = $usuario['']['nm_senha_usuario'];
-
-    if ($senha == $senhaBanco)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-
+    // var_dump($usuario);
+    if ($usuario)
+        $response->getBody()->write("true");
+    return $response;
+    $senhaBanco = $usuario->nm_senha_usuario;
+    // var_dump($senhaBanco);
+    // echo $usuario->nm_senha_usuario;
+    // var_dump($senhaBanco);
 }
 
 $app->run();

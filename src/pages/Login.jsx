@@ -8,37 +8,35 @@ function Login(){
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
 
-    const cadastrarUsuario = async (e) => {
-        e.preventDefault();
-
-        const title = "Cadastro";
-        const body = {'Nome': nome,'Nascimento': dataNascimento,'Email': email,'Senha': senha,'Logradouro': logradouro,'NumeroLogradouro': numeroLogradouro,'Bairro': bairro,'Cidade': cidade,'Estado': UF, 'CEP': cep};
-        // const post = {title, body};
-        try
-        {
-            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : body,},{headers : {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
-            // console.log(title, body);
-        }
-        catch (error)
-        {
-            console.log(error);
-        }
-    }
-
     const logarUsuario = async (e) => {
         e.preventDefault();
 
         const body = {'Email': email, 'Senha': senha}
         try
         {
-            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/logarUsuario', {body: body},{headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
-            console.log(resposta);
+            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/logarUsuario', {body: body},{headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}}).then(() => decidirLogin(resposta.data));
+            // console.log(resposta.data);
+            decidirLogin(resposta.data);
+            if (resposta.data == "true")
+            {
+                console.log('entrando no resposta')
+                location.href = 'http://localhost:5173/menuFuncionario';
+            }
         }
         catch (error)
         {
             console.log(error);
         }
     }
+
+    function decidirLogin(resposta)
+    {
+        if (resposta == "true")
+        {
+            location.href = 'http://localhost:5173/menuFuncionario';
+        }
+    }
+
 
     return(
         <div className="telaPadrao flex flex-col items-center">
