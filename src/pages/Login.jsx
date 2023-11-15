@@ -14,14 +14,17 @@ function Login(){
         const body = {'Email': email, 'Senha': senha}
         try
         {
-            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/logarUsuario', {body: body},{headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}}).then(() => decidirLogin(resposta.data));
-            // console.log(resposta.data);
-            decidirLogin(resposta.data);
-            if (resposta.data == "true")
+            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/logarUsuario', {body: body},{headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
+            console.log(resposta.data);
+            if (resposta.data)
             {
-                console.log('entrando no resposta')
-                location.href = 'http://localhost:5173/menuFuncionario';
+                decidirLogin(resposta.data);
             }
+            // if (resposta.data == "true")
+            // {
+            //     console.log('entrando no resposta')
+            //     location.href = 'http://localhost:5173/menuFuncionario';
+            // }
         }
         catch (error)
         {
