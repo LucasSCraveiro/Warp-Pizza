@@ -125,8 +125,7 @@ function Cardapio()
                             <a className="text-[#C8102E] underline underline-offset-1" href="/pizzas">Ver todas</a>
                         </div>
                         <div className="w-full mt-1 flex">
-                            
-                        {colocarPizzas()}
+                            {colocarPizzas()}
                         </div>
                     </div>
                     <div className="w-full mb-12">

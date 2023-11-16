@@ -3,6 +3,7 @@ import { useEffect, useState, React } from "react";
 import ReactDOM from "react-dom/client";
 import axios from "axios";
 import Modal from "../components/Modal";
+import { useRef } from "react";
 
 function Cadastro(){
 
@@ -135,8 +136,8 @@ function Cadastro(){
                 <div className="w-6/12 flex flex-col items-center px-[6rem]">
                     <div className="flex flex-col items-center pt-5 w-full">
                         <p className="text-center text-xl w-full mb-5">Boa, vamos começar criando sua conta!</p>
-                        {/* <Modal value={textoModal}/> */}
                         <form onSubmit={(e) => cadastrarUsuario(e)}>
+                            <Modal/>
                             <label className="text-left w-full ps-5">Qual seu nome e sobrenome?</label>
                             <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} name="nome" id="nome" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe pra gente seu nome completo"/>
                             <label className="text-left w-full ps-5">Qual é o seu aniversário?</label>
