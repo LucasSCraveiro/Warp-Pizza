@@ -104,8 +104,26 @@ function cadastrarUsuario(Request $request, Response $response, array $args)
     $cidade = $formulario['body']['Cidade'];
     $estado = $formulario['body']['Estado'];
     $cep = $formulario['body']['CEP'];
-    $sql = "INSERT INTO tb_usuario (nm_usuario, dt_nascimento_usuario, nm_email_usuario, nm_senha_usuario) VALUES ('$nome','$nascimento','$email','$senha');";
-    $stmt = getConn()->query($sql); // <--- Isso já roda o comando
+    //Pesquisando se o usuário cadastrado já existe
+    $sql = "SELECT * FROM tb_usuario WHERE nm_email_usuario = '$email';";
+    $stmt = getConn()->prepare($sql);
+    $stmt->execute();
+    $usuario = $stmt->fetchObject();
+    if (!$usuario)
+    {
+        //Cadastrando usuário
+        $sql = "INSERT INTO tb_usuario (nm_usuario, dt_nascimento_usuario, nm_email_usuario, nm_senha_usuario) VALUES ('$nome','$nascimento','$email','$senha');"; ;
+        $stmt = getConn()->query($sql); // <--- Isso já roda o comando
+        //Peganco id do usuário
+        $sql = "SELECT cd_usuario FROM tb_usuario WHERE nm_email_usuario = '$email'";
+        $stmt = getConn()->prepare($sql);
+        $stmt->execute();
+        $usuario = $stmt->fetchObject();
+        $cd_usuario = $usuario->cd_usuario;
+        //Cadastrando endereço do usuário
+        $sql = "INSERT INTO tb_endereco_usuario (nm_logradouro, nm_numero_logradouro, nm_bairro, nm_cidade, sg_UF, cd_CEP, cd_usuario) VALUES ('$logradouro','$numeroLogradouro','$bairro','$cidade','$estado','$cep', '$cd_usuario');";
+        $stmt = getConn()->query($sql);
+    }
 
     // $stmt->execute(); <--- Faz com que a inserção ocorra duas vezes
     // $arreio['teste'] = var_dump($vindo);
@@ -125,9 +143,15 @@ function logarUsuario(Request $request, Response $response, array $args)
     $usuario = $stmt->fetchObject();
     // var_dump($usuario);
     if ($usuario)
+    {
         $response->getBody()->write("true");
+    }
+    else
+    {
+        $response->getBody()->write("false");
+    }
     return $response;
-    $senhaBanco = $usuario->nm_senha_usuario;
+    // $senhaBanco = $usuario->nm_senha_usuario;
     // var_dump($senhaBanco);
     // echo $usuario->nm_senha_usuario;
     // var_dump($senhaBanco);
