@@ -73,9 +73,14 @@ function Cadastro(){
     function limparFormulario()
     {
         document.getElementById('endereco').value = "";
+        setLogradouro("");
         document.getElementById('bairro').value = "";
+        setBairro("");
         document.getElementById('cidade').value = "";
+        setCidade("");
         document.getElementById('estado').value = "naoSelecionado";
+        setUF(naoSelecionado);
+
     }
 
     function colocarResultado(resultado)
@@ -83,9 +88,13 @@ function Cadastro(){
         if (!("erro" in resultado))
         {
             document.getElementById('endereco').value = resultado.logradouro;
+            setLogradouro(resultado.logradouro);
             document.getElementById('bairro').value = resultado.bairro;
+            setBairro(resultado.bairro);
             document.getElementById('cidade').value = resultado.localidade;
+            setCidade(resultado.localidade);
             document.getElementById('estado').value = resultado.uf;
+            setUF(resultado.uf);
         }
         else
         {
