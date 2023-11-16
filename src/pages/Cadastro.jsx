@@ -2,8 +2,8 @@ import Navbar from "../components/Navbar";
 import { useEffect, useState, React } from "react";
 import ReactDOM from "react-dom/client";
 import axios from "axios";
-import Modal from "../components/Modal";
 import { useRef } from "react";
+import Modal from "react-overlays/Modal";
 
 function Cadastro(){
 
@@ -18,7 +18,10 @@ function Cadastro(){
     const [cidade, setCidade] = useState("");
     const [UF, setUF] = useState("");
     const [textoModal, setTextoModal] = useState("");
+    const [mostrarModal, setMostrarModal] = useState(false);
 
+    const renderBackdrop = (props) => <div className="backdrop" {...props} />
+    const esconderModal = () => setMostrarModal(false);
 
     const cadastrarUsuario = async (e) => {
         e.preventDefault();
@@ -32,12 +35,16 @@ function Cadastro(){
             // console.log(title, body);
             // setTextoModal("Usuário cadastrado com sucesso!");
             // ativarModal();
+            setTextoModal("Usuário cadastrado com sucesso!");
+            setMostrarModal(true);
         }
         catch (error)
         {
             console.log(error);
         }
     }
+
+
 
     const verCEP = (e) => {
         e.preventDefault();
@@ -135,9 +142,16 @@ function Cadastro(){
                 </div>
                 <div className="w-6/12 flex flex-col items-center px-[6rem]">
                     <div className="flex flex-col items-center pt-5 w-full">
+                        <Modal className="Modal" show={mostrarModal} onHide={esconderModal} renderBackdrop={renderBackdrop}>
+                            <div className="z-10 hidden fixed left-0 top-0 telaPadrao bg-black opacity-5 justify-center items-center">
+                                <div className="bg-white rounded-lg w-3/12 h-2/6">
+                                    <p className="font-normal text-xl">{textoModal}</p>
+                                    <button className="w-3/12 h-1/6 bg-blue-950 text-white font-semibold" onClick={setMostrarModal(false)}>Fechar</button>
+                                </div>
+                            </div>
+                        </Modal>
                         <p className="text-center text-xl w-full mb-5">Boa, vamos começar criando sua conta!</p>
                         <form onSubmit={(e) => cadastrarUsuario(e)}>
-                            <Modal/>
                             <label className="text-left w-full ps-5">Qual seu nome e sobrenome?</label>
                             <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} name="nome" id="nome" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe pra gente seu nome completo"/>
                             <label className="text-left w-full ps-5">Qual é o seu aniversário?</label>
