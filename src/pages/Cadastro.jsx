@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import { useEffect, useState, React } from "react";
 import ReactDOM from "react-dom/client";
 import axios from "axios";
+import Modal from "../components/Modal";
 
 function Cadastro(){
 
@@ -15,17 +16,21 @@ function Cadastro(){
     const [bairro, setBairro] = useState("");
     const [cidade, setCidade] = useState("");
     const [UF, setUF] = useState("");
+    const [textoModal, setTextoModal] = useState("");
+
 
     const cadastrarUsuario = async (e) => {
         e.preventDefault();
 
         const title = "Cadastro";
         const body = {'Nome': nome,'Nascimento': dataNascimento,'Email': email,'Senha': senha,'Logradouro': logradouro,'NumeroLogradouro': numeroLogradouro,'Bairro': bairro,'Cidade': cidade,'Estado': UF, 'CEP': cep};
-        // const post = {title, body};
+        const post = {title, body};
         try
         {
             const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : body,},{headers : {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
             // console.log(title, body);
+            // setTextoModal("Usuário cadastrado com sucesso!");
+            // ativarModal();
         }
         catch (error)
         {
@@ -130,6 +135,7 @@ function Cadastro(){
                 <div className="w-6/12 flex flex-col items-center px-[6rem]">
                     <div className="flex flex-col items-center pt-5 w-full">
                         <p className="text-center text-xl w-full mb-5">Boa, vamos começar criando sua conta!</p>
+                        {/* <Modal value={textoModal}/> */}
                         <form onSubmit={(e) => cadastrarUsuario(e)}>
                             <label className="text-left w-full ps-5">Qual seu nome e sobrenome?</label>
                             <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} name="nome" id="nome" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe pra gente seu nome completo"/>
