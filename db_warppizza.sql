@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Nov-2023 às 22:48
+-- Tempo de geração: 18-Nov-2023 às 01:31
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -109,6 +109,7 @@ CREATE TABLE `tb_endereco_usuario` (
   `nm_bairro` varchar(50) NOT NULL,
   `nm_cidade` varchar(50) NOT NULL,
   `sg_UF` varchar(2) NOT NULL,
+  `cd_CEP` varchar(8) NOT NULL,
   `cd_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

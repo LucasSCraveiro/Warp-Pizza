@@ -105,25 +105,39 @@ function cadastrarUsuario(Request $request, Response $response, array $args)
     $estado = $formulario['body']['Estado'];
     $cep = $formulario['body']['CEP'];
     //Pesquisando se o usuário cadastrado já existe
-    $sql = "SELECT * FROM tb_usuario WHERE nm_email_usuario = '$email';";
-    $stmt = getConn()->prepare($sql);
-    $stmt->execute();
-    $usuario = $stmt->fetchObject();
-    if (!$usuario)
+    if ($nome && $nascimento && $email && $senha && $logradouro && $numeroLogradouro && $bairro && $cidade && $estado && $cep)
     {
-        //Cadastrando usuário
-        $sql = "INSERT INTO tb_usuario (nm_usuario, dt_nascimento_usuario, nm_email_usuario, nm_senha_usuario) VALUES ('$nome','$nascimento','$email','$senha');"; ;
-        $stmt = getConn()->query($sql); // <--- Isso já roda o comando
-        //Peganco id do usuário
-        $sql = "SELECT cd_usuario FROM tb_usuario WHERE nm_email_usuario = '$email'";
+        $sql = "SELECT * FROM tb_usuario WHERE nm_email_usuario = '$email';";
         $stmt = getConn()->prepare($sql);
         $stmt->execute();
         $usuario = $stmt->fetchObject();
-        $cd_usuario = $usuario->cd_usuario;
-        //Cadastrando endereço do usuário
-        $sql = "INSERT INTO tb_endereco_usuario (nm_logradouro, nm_numero_logradouro, nm_bairro, nm_cidade, sg_UF, cd_CEP, cd_usuario) VALUES ('$logradouro','$numeroLogradouro','$bairro','$cidade','$estado','$cep', '$cd_usuario');";
-        $stmt = getConn()->query($sql);
+        if (!$usuario)
+        {
+            //Cadastrando usuário
+            $sql = "INSERT INTO tb_usuario (nm_usuario, dt_nascimento_usuario, nm_email_usuario, nm_senha_usuario) VALUES ('$nome','$nascimento','$email','$senha');"; ;
+            $stmt = getConn()->query($sql); // <--- Isso já roda o comando
+            //Peganco id do usuário
+            $sql = "SELECT cd_usuario FROM tb_usuario WHERE nm_email_usuario = '$email'";
+            $stmt = getConn()->prepare($sql);
+            $stmt->execute();
+            $usuario = $stmt->fetchObject();
+            $cd_usuario = $usuario->cd_usuario;
+            //Cadastrando endereço do usuário
+            $sql = "INSERT INTO tb_endereco_usuario (nm_logradouro, nm_numero_logradouro, nm_bairro, nm_cidade, sg_UF, cd_CEP, cd_usuario) VALUES ('$logradouro','$numeroLogradouro','$bairro','$cidade','$estado','$cep', '$cd_usuario');";
+            $stmt = getConn()->query($sql);
+            $veio = "usuarioCadastrado";
+        }
+        else
+        {
+            $veio = "usuarioNaoCadastrado";
+        }
     }
+    else
+    {
+        $veio = "erro";
+    }
+    return $response->withStatus(201)->withJson($veio);
+
 
     // $stmt->execute(); <--- Faz com que a inserção ocorra duas vezes
     // $arreio['teste'] = var_dump($vindo);
