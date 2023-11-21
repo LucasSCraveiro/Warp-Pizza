@@ -5,16 +5,22 @@ import axios from "axios";
 
 function AdicionarPizza(){
 
-    const cadastrarUsuario = async (e) => {
+    const [nomePizza, setNomePizza] = useState("");
+    const [descricaoPizza, setDescricaoPizza] = useState("");
+    const [valorPizza, setValorPizza] = useState("");
+    const [imagemPizza, setImagemPizza] = useState("src/assets/images/pizzas/frangoCatupiry.png");
+
+    const cadastrarPizza = async (e) => {
         e.preventDefault();
 
-        const title = "";
-        const body = nome;
+        const title = "Pizza";
+        const body = {"NomePizza":nomePizza,"DescricaoPizza":descricaoPizza,"ValorPizza":valorPizza,"ImagemPizza":imagemPizza};
         const post = {title, body};
         try
         {
-            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : post});
-            // console.log(title, body);
+            const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarPizza', {body : body},{headers : {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
+            console.log(resposta);
+            alert(resposta.data);
         }
         catch (error)
         {
@@ -42,28 +48,28 @@ function AdicionarPizza(){
             <div className="w-full flex flex-row justify-center items-center h-full bg-[#f8f2f4]">
                 <div className="w-3/12 drop-shadow-md px-2">
                     <div className="w-11/12 pb-3 px-3 bg-white rounded-lg h-[15rem]">
-                        <div className="flex py-2 justify-start">
-                            <div className="w-7/12 text-left pe-5">
-                                <p className="font-medium text-lg reticencias"><input placeholder="Nome da Pizza"></input></p>
-                                <p className="font-base text-sm mb-5 reticencias h-[3.8rem]"><input placeholder="Descrição da Pizza"></input></p>
-                                <p className="text-sm">A partir de</p>
-                                <p className="font-medium">Créditos <input placeholder="Valor da Pizza" type="number" step={0.01} className="w-7/12"></input></p>
-                            </div>
-                            <div className="w-5/12 flex justify-center items-center">
-                                <div className=" border border-gray-400 rounded-lg flex justify-center items-center imagemCardPizza shadow-inner h-[9rem] w-[9rem]">
-                                    <button>Adicionar Imagem</button>
+                        <form onSubmit={(e) => cadastrarPizza(e)}>
+                            <div className="flex py-2 justify-start">
+                                <div className="w-7/12 text-left pe-5">
+                                    <p className="font-medium text-lg reticencias"><input placeholder="Nome da Pizza" onChange={(e) => (setNomePizza(e.target.value))}></input></p>
+                                    <p className="font-base text-sm mb-5 reticencias h-[3.8rem]"><input placeholder="Descrição da Pizza" onChange={(e) => (setDescricaoPizza(e.target.value))}></input></p>
+                                    <p className="text-sm">A partir de</p>
+                                    <p className="font-medium">Créditos <input placeholder="Valor da Pizza" type="number" step={0.01} className="w-7/12" onChange={(e) => (setValorPizza(e.target.value))}></input></p>
+                                </div>
+                                <div className="w-5/12 flex justify-center items-center">
+                                    <div className=" border border-gray-400 rounded-lg flex justify-center items-center imagemCardPizza shadow-inner h-[9rem] w-[9rem]">
+                                        <button>Imagem Padrão</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <hr className="w-full"></hr>
-                        <div className="flex justify-evenly pt-3">
-                            <a href="/menuFuncionario">
-                                <button className="border border-black bg-white text-black px-3 py-1 rounded-full">Cancelar</button>
-                            </a>
-                            <a href="">
-                                <button className="border border-black bg-white text-black px-3 py-1 rounded-full">Adicionar</button>
-                            </a>
-                        </div>
+                            <hr className="w-full"></hr>
+                            <div className="flex justify-evenly pt-3">
+                                <a href="/menuFuncionario">
+                                    <button className="border border-black bg-white text-black px-3 py-1 rounded-full">Cancelar</button>
+                                </a>
+                                    <button type="submit" className="border border-black bg-white text-black px-3 py-1 rounded-full">Adicionar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

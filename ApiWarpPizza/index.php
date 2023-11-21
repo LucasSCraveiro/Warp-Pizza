@@ -22,6 +22,8 @@ $app->get('/entradasMenu','getEntradasMenu');
 $app->get('/bebidas','getBebidas');
 $app->get('/bebidasMenu','getBebidasMenu');
 
+$app->post('/cadastrarPizza','cadastrarPizza');
+
 $app->post('/cadastrarUsuario','cadastrarUsuario');
 $app->post('/logarUsuario','logarUsuario');
 
@@ -84,6 +86,26 @@ function getBebidasMenu(Request $request, Response $response, array $args)
     $stmt = getConn()->query($sql);
     $bebidas = $stmt->fetchAll(PDO::FETCH_OBJ);
     $response->getBody()->write(json_encode($bebidas));
+    return $response;
+}
+
+function cadastrarPizza(Request $request, Response $response, array $args)
+{
+    $formulario = $request->getParsedBody();
+    $nomePizza = $formulario['body']['NomePizza'];
+    $descricaoPizza = $formulario['body']['DescricaoPizza'];
+    $valorPizza = $formulario['body']['ValorPizza'];
+    $imagemPizza = $formulario['body']['ImagemPizza'];
+    if ($nomePizza && $descricaoPizza && $valorPizza && $imagemPizza)
+    {
+        $sql = "INSERT INTO tb_pizza (nm_pizza, ds_pizza, vl_pizza, img_pizza) VALUES ('$nomePizza','$descricaoPizza','$valorPizza','$imagemPizza');";
+        $stmt = getConn()->query($sql);
+        $response->getBody()->write("Pizza cadastrada");
+    }
+    else
+    {
+        $response->getBody()->write("Dados insuficientes!");
+    }
     return $response;
 }
 

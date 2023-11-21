@@ -4,12 +4,13 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import React, { useEffect } from 'react';
 import Footer from "../components/Footer";
 import { items } from "../components/CarrosselAlimentos";
-import { pizzasMenu } from "../components/Alimentos";
+import { useState } from "react";
+// import { pizzasMenu } from "../components/Alimentos";
 
 
 function Pizzas()
 {
-
+    const [pizzasMenu, setPizzasMenu] = useState([]);
     const handleDragStart = (e) => e.preventDefault();
 
     const responsive = {
@@ -29,8 +30,16 @@ function Pizzas()
         }
     }
 
+    function pegarDados()
+    {
+        fetch("http://localhost/Warp-Pizza/ApiWarpPizza/pizzas")
+        .then((response) => response.json())
+        .then((json) => setPizzasMenu(json));
+    };
+
     useEffect(() => {
         trocaBotao();
+        pegarDados();
     });
 
     return(
@@ -52,18 +61,18 @@ function Pizzas()
                     </div>
                     <div className="w-full mt-6 flex flex-wrap gap-y-5">
                         {pizzasMenu.map((pizza) =>
-                            <div className="w-4/12 drop-shadow-md px-2" key={pizza.id}>
+                            <div className="w-4/12 drop-shadow-md px-2" key={pizza.cd_pizza}>
                                 <div className="w-full pb-3 px-3 bg-white rounded-lg">
                                     <div className="flex py-2 justify-start">
                                         <div className="w-7/12 text-left pe-5">
-                                            <p className="font-medium text-lg reticencias whitespace-nowrap">{pizza.sabor}</p>
-                                            <p className="font-base text-sm mb-5 reticencias h-[3.8rem]">{pizza.descricao}</p>
+                                            <p className="font-medium text-lg reticencias whitespace-nowrap">{pizza.nm_pizza}</p>
+                                            <p className="font-base text-sm mb-5 reticencias h-[3.8rem]">{pizza.ds_pizza}</p>
                                             <p className="text-sm">A partir de</p>
-                                            <p className="font-medium">{pizza.valor} Créditos</p>
+                                            <p className="font-medium">{pizza.vl_pizza} Créditos</p>
                                         </div>
                                         <div className="w-5/12 flex justify-center items-center">
                                             <div className="border border-gray-400 rounded-lg flex justify-center items-center imagemCardPizza">
-                                            <img src={pizza.imagem} className=""></img>
+                                            <img src={pizza.img_pizza} className=""></img>
                                             </div>
                                         </div>
                                     </div>
