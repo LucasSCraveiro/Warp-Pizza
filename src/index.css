@@ -23,6 +23,14 @@
   overflow: hidden;
 }
 
+.telaMinima
+{
+  max-width: 100vw;
+  width: 100vw;
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+}
 .reticencias
 {
   text-overflow: ellipsis;

@@ -136,7 +136,7 @@ function cadastrarUsuario(Request $request, Response $response, array $args)
         if (!$usuario)
         {
             //Cadastrando usuário
-            $sql = "INSERT INTO tb_usuario (nm_usuario, dt_nascimento_usuario, nm_email_usuario, nm_senha_usuario) VALUES ('$nome','$nascimento','$email','$senha');"; ;
+            $sql = "INSERT INTO tb_usuario (nm_usuario, dt_nascimento_usuario, nm_email_usuario, nm_senha_usuario) VALUES ('$nome','$nascimento','$email','$senha');";
             $stmt = getConn()->query($sql); // <--- Isso já roda o comando
             //Peganco id do usuário
             $sql = "SELECT cd_usuario FROM tb_usuario WHERE nm_email_usuario = '$email'";

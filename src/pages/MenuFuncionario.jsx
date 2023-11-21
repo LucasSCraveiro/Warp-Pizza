@@ -34,7 +34,7 @@ function MenuFuncionario(){
     }
 
     return(
-        <div className="telaPadrao flex flex-col items-center">
+        <div className="telaPadrao telaMinima flex flex-col items-center">
             <div className="w-full flex justify-center py-2">
                 <div className="w-8/12 flex flex-row">
                     <div className="w-4/12 flex items-center justify-center">

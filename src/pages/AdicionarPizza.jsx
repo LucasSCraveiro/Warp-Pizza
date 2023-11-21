@@ -29,7 +29,7 @@ function AdicionarPizza(){
     }
 
     return(
-        <div className="telaPadrao flex flex-col items-center">
+        <div className="telaPadrao telaMinima flex flex-col items-center">
             <div className="w-full flex justify-center py-2">
                 <div className="w-8/12 flex flex-row">
                     <div className="w-4/12 flex items-center justify-center">
@@ -65,7 +65,7 @@ function AdicionarPizza(){
                             <hr className="w-full"></hr>
                             <div className="flex justify-evenly pt-3">
                                 <a href="/menuFuncionario">
-                                    <button className="border border-black bg-white text-black px-3 py-1 rounded-full">Cancelar</button>
+                                    <button type="button" className="border border-black bg-white text-black px-3 py-1 rounded-full">Cancelar</button>
                                 </a>
                                     <button type="submit" className="border border-black bg-white text-black px-3 py-1 rounded-full">Adicionar</button>
                             </div>
