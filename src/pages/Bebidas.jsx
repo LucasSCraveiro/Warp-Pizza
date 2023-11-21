@@ -25,12 +25,12 @@ function Bebidas()
 
     function trocaBotao()
     {
-        if (document.getElementById('pizzas') != null)
+        if (document.getElementById('bebidas') != null)
         {
-            document.getElementById('pizzas').style.backgroundColor='#C8102E';
-            document.getElementById('pizzas').style.color='white';
-            document.getElementById('pizzas').style.fontWeight='bold';
-            document.getElementById('pizzas').style.borderColor='#C8102E';
+            document.getElementById('bebidas').style.backgroundColor='#C8102E';
+            document.getElementById('bebidas').style.color='white';
+            document.getElementById('bebidas').style.fontWeight='bold';
+            document.getElementById('bebidas').style.borderColor='#C8102E';
         }
     }
 
