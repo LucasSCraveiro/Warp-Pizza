@@ -4,14 +4,17 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import React from 'react';
 import Footer from "../components/Footer";
 import { items } from "../components/CarrosselAlimentos";
-import { pizzasMenu } from "../components/Alimentos";
-import { entradinhasMenu } from "../components/Alimentos";
-import { bebidasMenu } from "../components/Alimentos";
+// import { pizzasMenu } from "../components/Alimentos";
+// import { entradinhasMenu } from "../components/Alimentos";
+// import { bebidasMenu } from "../components/Alimentos";
+import { useEffect } from "react";
+import { useState } from "react";
 
 
 function Bebidas()
 {
 
+    const [bebidasMenu, setBebidasMenu] = useState([]);
     const handleDragStart = (e) => e.preventDefault();
 
     const responsive = {
@@ -31,9 +34,17 @@ function Bebidas()
         }
     }
 
-    window.onload = function() {
-        
-    }
+    function pegarDados()
+    {
+        fetch("http://localhost/Warp-Pizza/ApiWarpPizza/bebidas")
+        .then((response) => response.json())
+        .then((json) => setBebidasMenu(json));
+    };
+
+    useEffect(() => {
+        trocaBotao();
+        pegarDados();
+    });
     
     return(
         <div className="telaPadrao fundoPizzaHut p-0 flex flex-col overflow-hidden items-center w-full">
@@ -54,18 +65,18 @@ function Bebidas()
                     </div>
                     <div className="w-full mt-6 flex flex-wrap gap-y-5">
                         {bebidasMenu.map((bebida) =>
-                            <div className="w-4/12 drop-shadow-md px-2" key={bebida.id}>
+                            <div className="w-4/12 drop-shadow-md px-2" key={bebida.cd_bebida}>
                                 <div className="w-full pb-3 px-3 bg-white rounded-lg h-[15rem]">
                                     <div className="flex py-2 justify-start">
                                         <div className="w-7/12 text-left pe-5">
-                                            <p className="font-medium text-lg reticencias">{bebida.nome}</p>
-                                            <p className="font-base text-sm mb-5 reticencias h-[3.8rem]">{bebida.descricao}</p>
+                                            <p className="font-medium text-lg reticencias">{bebida.nm_bebida}</p>
+                                            <p className="font-base text-sm mb-5 reticencias h-[3.8rem]">{bebida.ds_bebida}</p>
                                             <p className="text-sm">A partir de</p>
-                                            <p className="font-medium">{bebida.valor} Créditos</p>
+                                            <p className="font-medium">{bebida.vl_bebida} Créditos</p>
                                         </div>
                                         <div className="w-5/12 flex justify-center items-center">
                                             <div className=" border border-gray-400 rounded-lg flex justify-center items-center imagemCardPizza shadow-inner h-[9rem]">
-                                                <img src={bebida.imagem} className=""></img>
+                                                <img src={bebida.img_bebida} className=""></img>
                                             </div>
                                         </div>
                                     </div>

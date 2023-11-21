@@ -23,6 +23,8 @@ $app->get('/bebidas','getBebidas');
 $app->get('/bebidasMenu','getBebidasMenu');
 
 $app->post('/cadastrarPizza','cadastrarPizza');
+$app->post('/cadastrarBebida','cadastrarBebida');
+$app->post('/cadastrarEntrada','cadastrarEntrada');
 
 $app->post('/cadastrarUsuario','cadastrarUsuario');
 $app->post('/logarUsuario','logarUsuario');
@@ -101,6 +103,26 @@ function cadastrarPizza(Request $request, Response $response, array $args)
         $sql = "INSERT INTO tb_pizza (nm_pizza, ds_pizza, vl_pizza, img_pizza) VALUES ('$nomePizza','$descricaoPizza','$valorPizza','$imagemPizza');";
         $stmt = getConn()->query($sql);
         $response->getBody()->write("Pizza cadastrada");
+    }
+    else
+    {
+        $response->getBody()->write("Dados insuficientes!");
+    }
+    return $response;
+}
+
+function cadastrarBebida(Request $request, Response $response, array $args)
+{
+    $formulario = $request->getParsedBody();
+    $nomeBebida = $formulario['body']['NomeBebida'];
+    $descricaoBebida = $formulario['body']['DescricaoBebida'];
+    $valorBebida = $formulario['body']['ValorBebida'];
+    $imagemBebida = $formulario['body']['ImagemBebida'];
+    if ($nomeBebida && $descricaoBebida && $valorBebida && $imagemBebida)
+    {
+        $sql = "INSERT INTO tb_bebida (nm_bebida, ds_bebida, vl_bebida, img_bebida) VALUES ('$nomeBebida','$descricaoBebida','$valorBebida','$imagemBebida');";
+        $stmt = getConn()->query($sql);
+        $response->getBody()->write("Bebida cadastrada");
     }
     else
     {
