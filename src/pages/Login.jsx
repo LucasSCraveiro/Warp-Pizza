@@ -34,9 +34,15 @@ function Login(){
 
     function decidirLogin(resposta)
     {
-        if (resposta == "true")
+        if (resposta)
         {
-            location.href = 'http://localhost:5173/menuFuncionario';
+            if(resposta.Existe)
+            {
+                d = new Date();
+                d.setTime(d.getTime() + (60 * 60));
+                document.cookie = `nomeUsuario=${resposta.Nome}; path=/`;
+            }
+            // location.href = 'http://localhost:5173/menuFuncionario';
         }
     }
 

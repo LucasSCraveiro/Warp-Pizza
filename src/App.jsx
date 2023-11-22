@@ -15,6 +15,7 @@ import AdicionarBebida from './pages/AdicionarBebida'
 import AdicionarEntrada from './pages/AdicionarEntrada'
 import AdicionarPizza from './pages/AdicionarPizza'
 import Login from './pages/Login'
+import CadastrarCliente from './pages/CadastrarCliente'
 import './App.css'
 import './index.css'
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/adicionarEntrada" element = { <AdicionarEntrada/> }/>
           <Route path="/adicionarPizza" element = { <AdicionarPizza/> }/>
           <Route path="/login" element = { <Login/> }/>
+          <Route path="/cadastrarCliente" element = { <CadastrarCliente/> }/>
         </Routes>
       </BrowserRouter>
     </>

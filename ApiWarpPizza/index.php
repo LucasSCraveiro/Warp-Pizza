@@ -168,8 +168,9 @@ function cadastrarUsuario(Request $request, Response $response, array $args)
     $cidade = $formulario['body']['Cidade'];
     $estado = $formulario['body']['Estado'];
     $cep = $formulario['body']['CEP'];
+    $tipoUsuario = $formulario['body']['TipoUsuario'];
     //Pesquisando se o usuário cadastrado já existe
-    if ($nome && $nascimento && $email && $senha && $logradouro && $numeroLogradouro && $bairro && $cidade && $estado && $cep)
+    if ($nome && $nascimento && $email && $senha && $logradouro && $numeroLogradouro && $bairro && $cidade && $estado && $cep && $tipoUsuario)
     {
         $sql = "SELECT * FROM tb_usuario WHERE nm_email_usuario = '$email';";
         $stmt = getConn()->prepare($sql);
@@ -178,7 +179,7 @@ function cadastrarUsuario(Request $request, Response $response, array $args)
         if (!$usuario)
         {
             //Cadastrando usuário
-            $sql = "INSERT INTO tb_usuario (nm_usuario, dt_nascimento_usuario, nm_email_usuario, nm_senha_usuario) VALUES ('$nome','$nascimento','$email','$senha');";
+            $sql = "INSERT INTO tb_usuario (nm_usuario, dt_nascimento_usuario, nm_email_usuario, nm_senha_usuario, ds_tipo_usuario) VALUES ('$nome','$nascimento','$email','$senha', '$tipoUsuario');";
             $stmt = getConn()->query($sql); // <--- Isso já roda o comando
             //Peganco id do usuário
             $sql = "SELECT cd_usuario FROM tb_usuario WHERE nm_email_usuario = '$email'";
@@ -222,13 +223,16 @@ function logarUsuario(Request $request, Response $response, array $args)
     // var_dump($usuario);
     if ($usuario)
     {
-        $response->getBody()->write("true");
+        $nomeUsuario = $usuario->nm_usuario;
+        $tipoUsuario = $usuario->ds_tipo_usuario;
+        $resultado = "true";
+        return $response->withStatus(201)->withJson(["Nome" => $nomeUsuario, "Tipo" => $tipoUsuario, "Existe" => $resultado]);
     }
     else
     {
-        $response->getBody()->write("false");
+        $resultado = "false";
+        return $response->withStatus(201)->withJson(["Existe" => $resultado]);
     }
-    return $response;
     // $senhaBanco = $usuario->nm_senha_usuario;
     // var_dump($senhaBanco);
     // echo $usuario->nm_senha_usuario;

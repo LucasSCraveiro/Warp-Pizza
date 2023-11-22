@@ -1,11 +1,8 @@
-import Navbar from "../components/Navbar";
-import { useEffect, useState, React } from "react";
-import ReactDOM from "react-dom/client";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRef } from "react";
-import Modal from "react-overlays/Modal";
 
-function Cadastro(){
+function CadastrarCliente()
+{
 
     const [cep, setCep] = useState("");
     const [nome, setNome] = useState("");
@@ -19,15 +16,11 @@ function Cadastro(){
     const [UF, setUF] = useState("");
     const [tipoUsuario, setTipoUsuario] = useState("cliente");
 
-    // const renderBackdrop = (props) => <div className="backdrop" {...props} />
-    // const esconderModal = () => setMostrarModal(false);
-
-    const cadastrarUsuario = async (e) => {
+    const cadastrarCliente = async (e) => {
         e.preventDefault();
 
         const title = "Cadastro";
-        const body = {'Nome': nome, 'Nascimento': dataNascimento, 'Email': email, 'Senha': senha, 'Logradouro': logradouro, 'NumeroLogradouro': numeroLogradouro, 'Bairro': bairro, 'Cidade': cidade, 'Estado': UF, 'CEP': cep, 'TipoUsuario': tipoUsuario};
-        const post = {title, body};
+        const body = {'Nome': nome, 'Nascimento': dataNascimento, 'Email': email, 'Senha': senha, 'Logradouro': logradouro, 'NumeroLogradouro': numeroLogradouro, 'Bairro': bairro, 'Cidade': cidade, 'Estado': UF,  'CEP': cep, 'TipoUsuario': tipoUsuario};
         try
         {
             const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarUsuario', {body : body,},{headers : {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
@@ -127,11 +120,10 @@ function Cadastro(){
     }
 
     return(
-        <div className="telaPadrao flex flex-col items-center">
+        <div className="telaPadrao telaMinima flex flex-col items-center">
             <div className="w-full flex justify-center py-2">
                 <div className="w-8/12 flex flex-row">
                     <div className="w-4/12 flex items-center justify-center">
-                        <a href="/" className="text-[#C8102E] font-normal">Voltar para o início</a>
                     </div>
                     <div className="w-4/12 flex justify-center slide-in-blurred-right">
                         <a href="/" className="w-6/12">
@@ -144,24 +136,35 @@ function Cadastro(){
                 </div>
             </div>
             <hr className="w-full"></hr>
-            <div className="w-8/12 flex flex-row mt-6">
-                <div className="w-6/12 flex flex-col justify-center">
-                    <label className="text-[#18206B] text-3xl">Warp Pizza, um oferecimento do departamento de desenvolvimento da Federação</label>
-                    <img src="src/assets/images/brasaoFederacaoPizza.png" className="mt-10 mb-3"></img>
-                    <label className="text-[#18206B] text-2xl">Powered by Memory Alpha</label>
-                </div>
-                <div className="w-6/12 flex flex-col items-center px-[6rem]">
-                    <div className="flex flex-col items-center pt-5 w-full">
-                        <p className="text-center text-xl w-full mb-5">Boa, vamos começar criando sua conta!</p>
-                        <form onSubmit={(e) => cadastrarUsuario(e)}>
-                            <label className="text-left w-full ps-5">Qual seu nome e sobrenome?</label>
-                            <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} name="nome" id="nome" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe pra gente seu nome completo"/>
-                            <label className="text-left w-full ps-5">Qual é o seu aniversário?</label>
-                            <input type="date" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} name="aniversario" id="aniversario" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informa pra gente sua data de nascimento"/>
-                            <label className="text-left w-full ps-5">Qual é o seu email?</label>
-                            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} name="email" id="email" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe um email"/>
-                            <label className="text-left w-full ps-5">Digite uma senha:</label>
-                            <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} name="senha" id="senha" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Digite uma senha"/>
+            <div className="w-full flex flex-row justify-center h-full pt-[10rem] bg-[#f8f2f4]">
+                <div className="w-8/12 flex flex-col items-center">
+                    <div className="w-4/12 flex justify-center absolute top-[8rem]">
+                        <div className="rounded-full bg-white drop-shadow-xl w-4/12 z-20">
+                            <img src="src/assets/images/brasaoFederacaoPizza.png"></img>
+                        </div>
+                    </div>
+                    <div className=" w-7/12 bg-white rounded-2xl px-[6rem] pt-[7rem] pb-[3rem] drop-shadow-2xl">
+                        <form onSubmit={(e) => cadastrarCliente(e)}>
+                            <div className="flex">
+                                <div className="flex flex-col w-6/12 pe-2">
+                                    <label className="text-center w-full">Qual é o nome do cliente?</label>
+                                    <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} name="nome" id="nome" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe o nome do cliente"/>
+                                </div>
+                                <div className="flex flex-col w-6/12 ps-2">
+                                    <label className="text-center w-full">Qual é o seu aniversário?</label>
+                                    <input type="date" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} name="aniversario" id="aniversario" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informa pra gente sua data de nascimento"/>
+                                </div>
+                            </div>
+                            <div className="flex">
+                                <div className="flex flex-col w-6/12 pe-2">
+                                    <label className="text-center w-full">Qual é o email do cliente?</label>
+                                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} name="email" id="email" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Informe um email"/>
+                                </div>
+                                <div className="flex flex-col w-6/12 ps-2">
+                                    <label className="text-center w-full">Digite uma senha:</label>
+                                    <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} name="senha" id="senha" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="Digite uma senha"/>
+                                </div>
+                            </div>
                             <div className="w-full flex justify-between">
                                 <div className="w-6/12 flex flex-col justify-center pe-2">
                                     <label className="text-center w-full">Endereço</label>
@@ -221,13 +224,15 @@ function Cadastro(){
                                     <input type="text" value={cep} onChange={(e) => setCep(e.target.value)} id="CEP" name="CEP" className="inputCadastro border w-full h-[3rem] rounded-3xl border-gray-400 mb-3 px-7" placeholder="CEP" onBlur={(e) => verCEP(e)}></input>
                                 </div>
                             </div>
-                        <input type="submit" value="Cadastrar" className="border w-full h-[3rem] rounded-3xl border-[#18206B] bg-[#18206B] text-white font-medium mt-3"/>
+                            <div className="flex">
+                                <a className="w-6/12 pe-1">
+                                    <button type="button" className="border w-full h-[3rem] rounded-3xl border-[#18206B] bg-[#18206B] text-white font-medium mt-3">Voltar</button>
+                                </a>
+                                <div className="w-6/12 ps-1">
+                                    <input type="submit" value="Cadastrar" className="border w-full h-[3rem] rounded-3xl border-[#18206B] bg-[#18206B] text-white font-medium mt-3"/>
+                                </div>
+                            </div>
                         </form>
-                        <a href="/menuFuncionario" className="my-3">Cadastrar depois</a>
-                        <div className="flex flex-row">
-                        <label className="me-2">Já tem uma conta?</label>
-                        <a href="/login" className="underline underline-offset-1">Acesse aqui</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -235,4 +240,4 @@ function Cadastro(){
     )
 }
 
-export default Cadastro
+export default CadastrarCliente;
