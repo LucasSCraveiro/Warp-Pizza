@@ -1,8 +1,27 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import UsuarioSalvo from "../components/UsuarioSalvo";
 
 function CadastrarCliente()
 {
+
+    function verificarLogin()
+    {
+        var funcionarioRecebido = UsuarioSalvo.buscarUsuario();
+        console.log(funcionarioRecebido);
+        if (funcionarioRecebido.Nome != null && funcionarioRecebido.Tipo != null)
+        {
+            setNome(funcionarioRecebido.Nome);
+        }
+        else
+        {
+            location.href="http://localhost:5173/"
+        }
+    }
+
+    useEffect(() => {
+        verificarLogin();
+    }, []);
 
     const [cep, setCep] = useState("");
     const [nome, setNome] = useState("");
@@ -225,7 +244,7 @@ function CadastrarCliente()
                                 </div>
                             </div>
                             <div className="flex">
-                                <a className="w-6/12 pe-1">
+                                <a className="w-6/12 pe-1" href="/menuFuncionario">
                                     <button type="button" className="border w-full h-[3rem] rounded-3xl border-[#18206B] bg-[#18206B] text-white font-medium mt-3">Voltar</button>
                                 </a>
                                 <div className="w-6/12 ps-1">

@@ -2,8 +2,27 @@ import Navbar from "../components/Navbar";
 import { useEffect, useState, React } from "react";
 import ReactDOM from "react-dom/client";
 import axios from "axios";
+import UsuarioSalvo from "../components/UsuarioSalvo";
 
 function AdicionarPizza(){
+
+    function verificarLogin()
+    {
+        var funcionarioRecebido = UsuarioSalvo.buscarUsuario();
+        console.log(funcionarioRecebido);
+        if (funcionarioRecebido.Nome != null && funcionarioRecebido.Tipo != null)
+        {
+            setNome(funcionarioRecebido.Nome);
+        }
+        else
+        {
+            location.href="http://localhost:5173/"
+        }
+    }
+
+    useEffect(() => {
+        verificarLogin();
+    }, []);
 
     const [nomePizza, setNomePizza] = useState("");
     const [descricaoPizza, setDescricaoPizza] = useState("");
