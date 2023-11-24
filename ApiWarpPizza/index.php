@@ -231,7 +231,7 @@ function logarUsuario(Request $request, Response $response, array $args)
     else
     {
         $resultado = "false";
-        return $response->withStatus(201)->withJson(["Existe" => $resultado]);
+        return $response->withStatus(201)->withJson(["Existe" => $resultado, "Tipo" => $tipoUsuario, "Nome" => $nomeUsuario]);
     }
     // $senhaBanco = $usuario->nm_senha_usuario;
     // var_dump($senhaBanco);

@@ -2,19 +2,13 @@ import Navbar from "../components/Navbar";
 import { useEffect, useState, React } from "react";
 import ReactDOM from "react-dom/client";
 import axios from "axios";
+import UsuarioSalvo from "../components/UsuarioSalvo";
 
 function MenuFuncionario(){
 
-    const [cep, setCep] = useState("");
     const [nome, setNome] = useState("");
-    const [dataNascimento, setDataNascimento] = useState("");
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-    const [logradouro, setLogradouro] = useState("");
-    const [numeroLogradouro, setNumeroLogradouro] = useState("");
-    const [bairro, setBairro] = useState("");
-    const [cidade, setCidade] = useState("");
-    const [UF, setUF] = useState("");
+
+
 
     const cadastrarUsuario = async (e) => {
         e.preventDefault();
@@ -32,6 +26,29 @@ function MenuFuncionario(){
             console.log(error);
         }
     }
+
+    function inicio()
+    {
+        var funcionarioRecebido = UsuarioSalvo.buscarUsuario();
+        console.log(funcionarioRecebido);
+        if (funcionarioRecebido.Nome != null && funcionarioRecebido.Tipo != null)
+        {
+            setNome(funcionarioRecebido.Nome);
+        }
+        else
+        {
+            location.href="http://localhost:5173/"
+        }
+    }
+
+    const deslogar = (e) => {
+        e.preventDefault();
+        UsuarioSalvo.deslogarUsuario();
+    }
+
+    useEffect(() => {
+        inicio();
+    }, []);
 
     return(
         <div className="telaPadrao telaMinima flex flex-col items-center">
@@ -52,7 +69,7 @@ function MenuFuncionario(){
             <hr className="w-full"></hr>
             <div className="w-full flex flex-row justify-center items-center h-full bg-[#f8f2f4]">
                 <div className="w-8/12 pb-[6rem]">
-                    <p className="font-semibold text-5xl mb-[6rem]">Bem-Vindo Funcionário</p>
+                    <p className="font-semibold text-5xl mb-[6rem]">Bem-Vindo {nome}</p>
                     <div className="flex flex-row justify-evenly w-full flex-wrap gap-y-16">
                         <div className="w-4/12 flex justify-center">
                             <a className="w-8/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="/adicionarPizza">
@@ -90,11 +107,11 @@ function MenuFuncionario(){
                             </a>
                         </div>
                         <div className="w-4/12 flex justify-center">
-                            <a className="w-8/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="/">
+                            <button onClick={(e) => deslogar(e)} className="w-8/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="/">
                                 <div className="w-full">
                                     <p className="font-semibold text-3xl">Sair</p>
                                 </div>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>

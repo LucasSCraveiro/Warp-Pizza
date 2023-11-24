@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import { useEffect, useState, React } from "react";
 import ReactDOM from "react-dom/client";
 import axios from "axios";
+import UsuarioSalvo from "../components/UsuarioSalvo";
 
 function Login(){
 
@@ -16,9 +17,14 @@ function Login(){
         {
             const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/logarUsuario', {body: body},{headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
             console.log(resposta.data);
-            if (resposta.data)
+            if (resposta.data.Existe)
             {
-                decidirLogin(resposta.data);
+                UsuarioSalvo.salvarUsuario(resposta.data);
+                if (resposta.data.Tipo == "funcionario")
+                {
+                    console.log(UsuarioSalvo.buscarUsuario());
+                    location.href = "http://localhost:5173/menuFuncionario";
+                }
             }
             // if (resposta.data == "true")
             // {
@@ -34,16 +40,6 @@ function Login(){
 
     function decidirLogin(resposta)
     {
-        if (resposta)
-        {
-            if(resposta.Existe)
-            {
-                d = new Date();
-                d.setTime(d.getTime() + (60 * 60));
-                document.cookie = `nomeUsuario=${resposta.Nome}; path=/`;
-            }
-            // location.href = 'http://localhost:5173/menuFuncionario';
-        }
     }
 
 
