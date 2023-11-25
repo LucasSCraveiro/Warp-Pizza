@@ -223,15 +223,26 @@ function logarUsuario(Request $request, Response $response, array $args)
     // var_dump($usuario);
     if ($usuario)
     {
+        $codigoUsuario = $usuario->cd_usuario;
+        $sql = "SELECT * FROM tb_endereco_usuario WHERE cd_usuario = '$codigoUsuario'";
+        $stmt = getConn()->prepare($sql);
+        $stmt->execute();
+        $enderecoUsuario = $stmt->fetchObject();
         $nomeUsuario = $usuario->nm_usuario;
         $tipoUsuario = $usuario->ds_tipo_usuario;
+        $logradouroUsuario = $enderecoUsuario->nm_logradouro;
+        $numeroLogradouroUsuario = $enderecoUsuario->nm_numero_logradouro;
+        $bairroUsuario = $enderecoUsuario->nm_bairro;
+        $cidadeUsuario = $enderecoUsuario->nm_cidade;
+        $estadoUsuario = $enderecoUsuario->sg_UF;
+        $cepUsuario = $enderecoUsuario->cd_CEP;
         $resultado = "true";
-        return $response->withStatus(201)->withJson(["Nome" => $nomeUsuario, "Tipo" => $tipoUsuario, "Existe" => $resultado]);
+        return $response->withStatus(201)->withJson(["Usuario" => ["Existe" => $resultado, "Nome" => $nomeUsuario, "Tipo" => $tipoUsuario], "Endereco" => ["Logradouro" => $logradouroUsuario, "NumeroLogradouro" => $numeroLogradouroUsuario, "Bairro" => $bairroUsuario, "Cidade" => $cidadeUsuario, "Estado" => $estadoUsuario, "CEP" => $cepUsuario]]);
     }
     else
     {
         $resultado = "false";
-        return $response->withStatus(201)->withJson(["Existe" => $resultado, "Tipo" => $tipoUsuario, "Nome" => $nomeUsuario]);
+        return $response->withStatus(201)->withJson(["Usuario" => ["Existe" => $resultado, "Nome" => $nomeUsuario, "Tipo" => $tipoUsuario], "Endereco" => ["Logradouro" => $logradouroUsuario, "NumeroLogradouro" => $numeroLogradouroUsuario, "Bairro" => $bairroUsuario, "Cidade" => $cidadeUsuario, "Estado" => $estadoUsuario, "CEP" => $cepUsuario]]);
     }
     // $senhaBanco = $usuario->nm_senha_usuario;
     // var_dump($senhaBanco);

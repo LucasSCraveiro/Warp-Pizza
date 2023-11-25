@@ -1,4 +1,27 @@
+import { useState } from "react";
+import UsuarioSalvo from "./UsuarioSalvo";
+import { useEffect } from "react";
+
 function NavbarReal(){
+
+    useEffect(() =>{
+        pegarEndereco();
+    }, []);
+
+    const [enderecoCliente, setEnderecoCliente] = useState("");
+
+    function pegarEndereco()
+    {
+        var dadosUsuario = UsuarioSalvo.buscarUsuario();
+        console.log(dadosUsuario);
+        setEnderecoCliente(`${dadosUsuario.Endereco.LogradouroUsuario}, ${dadosUsuario.Endereco.NumeroLogradouroUsuario} - ${dadosUsuario.Endereco.BairroUsuario}, ${dadosUsuario.Endereco.CidadeUsuario} - ${dadosUsuario.Endereco.EstadoUsuario}`);
+    }
+
+    const deslogar = (e) =>
+    {
+        UsuarioSalvo.deslogarUsuario();
+    }
+
     return(
         <>
             <div className="navbarReal flex flex-row h-[5rem] md:px-[26rem] bg-white px-[0rem] w-full justify-between sticky">
@@ -8,15 +31,15 @@ function NavbarReal(){
                         <img src="src/assets/images/warpSlicePizzaria3.png" className=""></img>
                         </a>
                     </div>
-                    <div className="flex w-8/12 items-center">
+                    <div className="flex w-6/12 items-center">
                         <a className="w-4/12 font-normal text-sm" href="/">Início</a>
                         <a className="w-4/12 font-normal text-sm" href="/cardapio">Cardápio</a>
                         <a className="w-4/12 font-normal text-sm">Meio a meio</a>
                     </div>
                 </div>
-                <div className="w-4/12 flex items-center justify-end">
-                    <label className="w-6/12 flex items-center"><img src="src/assets/images/localizacaoIcone.png" className="w-[1rem] h-[1rem]"></img>Sua Casa</label>
-                    <a className="w-4/12">Meu Perfil</a>
+                <div className="w-6/12 flex items-center justify-end">
+                    <label className="w-8/12 flex items-center"><img src="src/assets/images/localizacaoIcone.png" className="w-[2rem] h-[2rem]"></img>{enderecoCliente}</label>
+                    <button type="button" onClick={(e) => deslogar(e)} className="w-4/12">Sair</button>
                 </div>
             </div>
             <hr className="w-full"></hr>

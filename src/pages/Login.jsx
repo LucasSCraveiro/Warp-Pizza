@@ -16,14 +16,22 @@ function Login(){
         try
         {
             const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/logarUsuario', {body: body},{headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
-            console.log(resposta.data);
-            if (resposta.data.Existe)
+            // console.log(resposta.data);
+            if (resposta.data.Usuario.Existe)
             {
                 UsuarioSalvo.salvarUsuario(resposta.data);
-                if (resposta.data.Tipo == "funcionario")
+                if (resposta.data.Usuario.Tipo == "funcionario")
                 {
-                    console.log(UsuarioSalvo.buscarUsuario());
+                    // console.log(UsuarioSalvo.buscarUsuario());
                     location.href = "http://localhost:5173/menuFuncionario";
+                }
+                else
+                {
+                    if (resposta.data.Usuario.Tipo == "cliente")
+                    {
+                        // console.log(UsuarioSalvo.buscarUsuario());
+                        location.href = "http://localhost:5173/cardapio";
+                    }
                 }
             }
             // if (resposta.data == "true")

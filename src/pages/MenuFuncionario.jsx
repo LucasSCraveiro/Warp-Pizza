@@ -31,9 +31,9 @@ function MenuFuncionario(){
     {
         var funcionarioRecebido = UsuarioSalvo.buscarUsuario();
         console.log(funcionarioRecebido);
-        if (funcionarioRecebido.Nome != null && funcionarioRecebido.Tipo != null)
+        if (funcionarioRecebido.Usuario.Nome != null && funcionarioRecebido.Usuario.Tipo != null)
         {
-            setNome(funcionarioRecebido.Nome);
+            setNome(funcionarioRecebido.Usuario.Nome);
         }
         else
         {

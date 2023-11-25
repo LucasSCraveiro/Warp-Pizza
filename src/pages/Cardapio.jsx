@@ -4,6 +4,7 @@ import NavbarReal from "../components/NavbarReal";
 import { useState, useEffect } from "react";
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import UsuarioSalvo from "../components/UsuarioSalvo";
 
 function Cardapio()
 {
