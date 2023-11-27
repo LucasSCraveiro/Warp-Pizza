@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import UsuarioSalvo from "../components/UsuarioSalvo";
+import Carrinho from "../components/Carrinho";
 
 function Cardapio()
 {
@@ -27,7 +28,26 @@ function Cardapio()
         .then((json) => setBebidas(json))
     }
 
+    function verificarLogin()
+    {
+        var funcionarioRecebido = UsuarioSalvo.buscarUsuario();
+        // console.log(funcionarioRecebido);
+        if (funcionarioRecebido.Usuario.Nome == null && funcionarioRecebido.Usuario.Tipo == null)
+        {
+            location.href="http://localhost:5173/"
+        }
+    }
+
+    function pegarItem(nome, valor)
+    {
+        // Carrinho.resetarCarrinho();
+        var item = {"nome": nome, "valor": valor};
+        Carrinho.adicionarAoCarrinho(item);
+        console.log(localStorage.getItem("ValorCarrinho"));
+    }
+
     useEffect(() => {
+        verificarLogin();
         data();
     }, []);
 
@@ -111,7 +131,7 @@ function Cardapio()
                                     </div>
                                     <hr className="w-full"></hr>
                                     <div className="flex justify-end pt-3">
-                                        <button className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
+                                        <button type="button" onClick={(e) => pegarItem(pizza.nm_pizza,pizza.vl_pizza)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
                                     </div>
                                 </div>
                             </div>

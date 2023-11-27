@@ -10,7 +10,7 @@ function AdicionarPizza(){
     {
         var funcionarioRecebido = UsuarioSalvo.buscarUsuario();
         console.log(funcionarioRecebido);
-        if (funcionarioRecebido.Usuario.Nome == null && funcionarioRecebido.Usuario.Tipo == "funcionario")
+        if (funcionarioRecebido.Usuario.Nome == null && funcionarioRecebido.Usuario.Tipo != "funcionario")
         {
             location.href="http://localhost:5173/"
         }

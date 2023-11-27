@@ -17,7 +17,21 @@ var UsuarioSalvo = (function()
 
     var buscarUsuario = function()
     {
-        return {"Usuario": {"Nome": localStorage.getItem("NomeUsuario"), "Tipo": localStorage.getItem("TipoUsuario")}, "Endereco": {"LogradouroUsuario": localStorage.getItem("LogradouroUsuario"), "NumeroLogradouroUsuario": localStorage.getItem("NumeroLogradouroUsuario"), "BairroUsuario": localStorage.getItem("BairroUsuario"), "CidadeUsuario": localStorage.getItem("CidadeUsuario"), "EstadoUsuario": localStorage.getItem("EstadoUsuario")}};
+        return {
+                    "Usuario": 
+                    {
+                        "Nome": localStorage.getItem("NomeUsuario"), 
+                        "Tipo": localStorage.getItem("TipoUsuario")
+                    }, 
+                    "Endereco": 
+                    {
+                        "LogradouroUsuario": localStorage.getItem("LogradouroUsuario"), 
+                        "NumeroLogradouroUsuario": localStorage.getItem("NumeroLogradouroUsuario"), 
+                        "BairroUsuario": localStorage.getItem("BairroUsuario"), 
+                        "CidadeUsuario": localStorage.getItem("CidadeUsuario"), 
+                        "EstadoUsuario": localStorage.getItem("EstadoUsuario")
+                    }
+                };
     }
 
     var deslogarUsuario = function()

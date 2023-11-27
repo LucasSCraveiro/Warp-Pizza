@@ -1,11 +1,16 @@
 import { useState } from "react";
 import UsuarioSalvo from "./UsuarioSalvo";
 import { useEffect } from "react";
+import Carrinho from "./Carrinho";
 
 function NavbarReal(){
 
+    const [valorCarrinho, setValorCarrinho] = useState(0);
+    const [quantidadeCarrinho, setQuantidadeCarrinho] = useState(0);
+
     useEffect(() =>{
         pegarEndereco();
+        pegarValoresCarrinho();
     }, []);
 
     const [enderecoCliente, setEnderecoCliente] = useState("");
@@ -16,6 +21,19 @@ function NavbarReal(){
         console.log(dadosUsuario);
         setEnderecoCliente(`${dadosUsuario.Endereco.LogradouroUsuario}, ${dadosUsuario.Endereco.NumeroLogradouroUsuario} - ${dadosUsuario.Endereco.BairroUsuario}, ${dadosUsuario.Endereco.CidadeUsuario} - ${dadosUsuario.Endereco.EstadoUsuario}`);
     }
+
+    function pegarValoresCarrinho()
+    {
+        var valoresCarrinho = Carrinho.pegarCarrinho();
+
+        if (valoresCarrinho.ItemsCarrinho != null && valoresCarrinho.ValorCarrinho != null)
+        {
+            setValorCarrinho(valoresCarrinho.ValorCarrinho);
+            setQuantidadeCarrinho(valoresCarrinho.ItemsCarrinho);
+        }
+    }
+
+    setInterval(pegarValoresCarrinho, 500);
 
     const deslogar = (e) =>
     {
@@ -64,8 +82,8 @@ function NavbarReal(){
                                 <img src="src/assets/images/brasaoFederacaoPizza.png" className="w-full"></img>
                             </div>
                             <div className="flex flex-col w-8/12 ps-3">
-                                <p className="w-full text-left font-medium">500 Créditos</p>
-                                <p className="text-left">0 itens</p>
+                                <p className="w-full text-left font-medium">{valorCarrinho} Créditos</p>
+                                <p className="text-left">{quantidadeCarrinho} itens</p>
                             </div>
                         </div>
                     </div>
