@@ -17,12 +17,12 @@ function PedidoFuncionario()
         pegarDados();
         pegarValorCarrinho();
         var listaSemiPronta = (JSON.parse(localStorage.getItem("ItemsCarrinho")));
-        if (listaSemiPronta)
+        if (JSON.parse(localStorage.getItem("ItemsCarrinho")) != null)
         {
+            console.log("entrando nao nulo")
             var chavesListaPronta = Object.keys(listaSemiPronta);
-            var valoresListaPronta = Object.values(listaSemiPronta);
+            setListaPronta(Object.values(listaSemiPronta));
         }
-        setListaPronta(valoresListaPronta);
         var dadosCarrinho = Carrinho.pegarCarrinho();
         setValorCarrinho(dadosCarrinho.ValorCarrinho);
         setQuantidadeCarrinho(dadosCarrinho.ItemsCarrinho);
@@ -50,6 +50,14 @@ function PedidoFuncionario()
         var dadosCarrinho = Carrinho.pegarCarrinho();
         setValorCarrinho(dadosCarrinho.ValorCarrinho);
         setQuantidadeCarrinho(dadosCarrinho.ItemsCarrinho);
+        var listaSemiPronta = (JSON.parse(localStorage.getItem("ItemsCarrinho")));
+        if (JSON.parse(localStorage.getItem("ItemsCarrinho")) != null)
+        {
+            console.log("entrando nao nulo")
+            var chavesListaPronta = Object.keys(listaSemiPronta);
+            setListaPronta(Object.values(listaSemiPronta));
+        }
+        var dadosCarrinho = Carrinho.pegarCarrinho();
     }
 
     function pegarValorCarrinho()
@@ -68,7 +76,7 @@ function PedidoFuncionario()
         {
             try
             {
-                // const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarPedido', {body: body}, {headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
+                const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarPedido', {body: body}, {headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
                 Carrinho.resetarCarrinho();
             }
             catch(error)
