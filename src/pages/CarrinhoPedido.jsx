@@ -47,6 +47,7 @@ function CarrinhoPedido()
         try
         {
             const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarPedido', {body: body}, {headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
+            Carrinho.resetarCarrinho();
         }
         catch(error)
         {

@@ -17,6 +17,7 @@ import AdicionarPizza from './pages/AdicionarPizza'
 import Login from './pages/Login'
 import CadastrarCliente from './pages/CadastrarCliente'
 import CarrinhoPedido from './pages/CarrinhoPedido'
+import PedidoFuncionario from './pages/PedidoFuncionario'
 import './App.css'
 import './index.css'
 
@@ -44,6 +45,7 @@ function App() {
           <Route path="/login" element = { <Login/> }/>
           <Route path="/cadastrarCliente" element = { <CadastrarCliente/> }/>
           <Route path="/carrinhoPedido" element = { <CarrinhoPedido/> }/>
+          <Route path="/pedidoFuncionario" element = { <PedidoFuncionario/> }/>
         </Routes>
       </BrowserRouter>
     </>

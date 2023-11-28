@@ -100,7 +100,7 @@ function MenuFuncionario(){
                             </a>
                         </div>
                         <div className="w-4/12 flex justify-center">
-                            <a className="w-8/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="">
+                            <a className="w-8/12 h-24 bg-white border-gray-200 shadow-xl rounded-xl flex justify-center items-center" href="/pedidoFuncionario">
                                 <div className="w-full">
                                     <p className="font-semibold text-3xl">Realizar Pedido</p>
                                 </div>
