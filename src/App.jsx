@@ -7,15 +7,16 @@ import Pizzas from './pages/Pizzas'
 import FederacaoPromocao from './pages/FederacaoPromocao'
 import Entradinhas from './pages/Entradinhas'
 import Bebidas from './pages/Bebidas'
-import UsuariosAula from './pages/Usuarios'
-import Posts from './pages/Posts'
-import NovoPost from './pages/NovoPost'
+import UsuariosAula from './pages/aulas/Usuarios'
+import Posts from './pages/aulas/Posts'
+import NovoPost from './pages/aulas/NovoPost'
 import MenuFuncionario from './pages/MenuFuncionario'
 import AdicionarBebida from './pages/AdicionarBebida'
 import AdicionarEntrada from './pages/AdicionarEntrada'
 import AdicionarPizza from './pages/AdicionarPizza'
 import Login from './pages/Login'
 import CadastrarCliente from './pages/CadastrarCliente'
+import CarrinhoPedido from './pages/CarrinhoPedido'
 import './App.css'
 import './index.css'
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/adicionarPizza" element = { <AdicionarPizza/> }/>
           <Route path="/login" element = { <Login/> }/>
           <Route path="/cadastrarCliente" element = { <CadastrarCliente/> }/>
+          <Route path="/carrinhoPedido" element = { <CarrinhoPedido/> }/>
         </Routes>
       </BrowserRouter>
     </>

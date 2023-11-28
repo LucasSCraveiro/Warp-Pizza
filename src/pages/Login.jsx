@@ -20,6 +20,7 @@ function Login(){
             if (resposta.data.Usuario.Existe)
             {
                 UsuarioSalvo.salvarUsuario(resposta.data);
+                console.log(resposta.data);
                 if (resposta.data.Usuario.Tipo == "funcionario")
                 {
                     // console.log(UsuarioSalvo.buscarUsuario());

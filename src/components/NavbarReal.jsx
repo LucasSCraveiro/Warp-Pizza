@@ -20,6 +20,7 @@ function NavbarReal(){
         var dadosUsuario = UsuarioSalvo.buscarUsuario();
         console.log(dadosUsuario);
         setEnderecoCliente(`${dadosUsuario.Endereco.LogradouroUsuario}, ${dadosUsuario.Endereco.NumeroLogradouroUsuario} - ${dadosUsuario.Endereco.BairroUsuario}, ${dadosUsuario.Endereco.CidadeUsuario} - ${dadosUsuario.Endereco.EstadoUsuario}`);
+        localStorage.setItem("EnderecoCompleto", `${dadosUsuario.Endereco.LogradouroUsuario}, ${dadosUsuario.Endereco.NumeroLogradouroUsuario} - ${dadosUsuario.Endereco.BairroUsuario}, ${dadosUsuario.Endereco.CidadeUsuario} - ${dadosUsuario.Endereco.EstadoUsuario}`);
     }
 
     function pegarValoresCarrinho()
@@ -37,6 +38,7 @@ function NavbarReal(){
 
     const deslogar = (e) =>
     {
+        Carrinho.resetarCarrinho();
         UsuarioSalvo.deslogarUsuario();
     }
 
@@ -78,13 +80,17 @@ function NavbarReal(){
                         </div>
                         <div className="w-[1px] border-l border-gray-300"></div>
                         <div className="flex w-5/12 items-center">
-                            <div className="w-4/12 flex items-center">
-                                <img src="src/assets/images/brasaoFederacaoPizza.png" className="w-full"></img>
-                            </div>
-                            <div className="flex flex-col w-8/12 ps-3">
-                                <p className="w-full text-left font-medium">{valorCarrinho} Créditos</p>
-                                <p className="text-left">{quantidadeCarrinho} itens</p>
-                            </div>
+                            <a href="/carrinhoPedido">
+                                <button className="flex justify-center items-center">
+                                    <div className="w-4/12 flex items-center">
+                                        <img src="src/assets/images/brasaoFederacaoPizza.png" className="w-full"></img>
+                                    </div>
+                                    <div className="flex flex-col w-8/12 ps-3">
+                                        <p className="w-full text-left font-medium">{valorCarrinho} Créditos</p>
+                                        <p className="text-left">{quantidadeCarrinho} itens</p>
+                                    </div>
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>  

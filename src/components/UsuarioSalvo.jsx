@@ -5,6 +5,7 @@ var UsuarioSalvo = (function()
 
     var salvarUsuario = function(usuario)
     {
+        localStorage.setItem("IDUsuario", usuario.Usuario.ID)
         localStorage.setItem("NomeUsuario",usuario.Usuario.Nome);
         localStorage.setItem("TipoUsuario",usuario.Usuario.Tipo);
         localStorage.setItem("LogradouroUsuario",usuario.Endereco.Logradouro);
@@ -21,7 +22,8 @@ var UsuarioSalvo = (function()
                     "Usuario": 
                     {
                         "Nome": localStorage.getItem("NomeUsuario"), 
-                        "Tipo": localStorage.getItem("TipoUsuario")
+                        "Tipo": localStorage.getItem("TipoUsuario"),
+                        "ID": localStorage.getItem("IDUsuario")
                     }, 
                     "Endereco": 
                     {

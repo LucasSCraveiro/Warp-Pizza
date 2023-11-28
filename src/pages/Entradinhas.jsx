@@ -8,6 +8,7 @@ import { useState } from "react";
 // import { pizzasMenu } from "../components/Alimentos";
 // import { entradinhasMenu } from "../components/Alimentos";
 import { useEffect } from "react";
+import Carrinho from "../components/Carrinho";
 
 
 function Entradinhas()
@@ -40,10 +41,18 @@ function Entradinhas()
         .then((json) => setEntradinhasMenu(json));
     };
 
+    function pegarItem(nome, valor, imagem)
+    {
+        // Carrinho.resetarCarrinho();
+        var item = {"nome": nome, "valor": valor, "imagem": imagem};
+        Carrinho.adicionarAoCarrinho(item);
+        console.log(localStorage.getItem("ValorCarrinho"));
+    }
+
     useEffect(() => {
         trocaBotao();
         pegarDados();
-    });
+    }, []);
     
     return(
         <div className="telaPadrao fundoPizzaHut p-0 flex flex-col overflow-hidden items-center w-full">
@@ -81,7 +90,7 @@ function Entradinhas()
                                     </div>
                                     <hr className="w-full"></hr>
                                     <div className="flex justify-end pt-3">
-                                        <button className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
+                                        <button type="button" onClick={(e) => pegarItem(entradinha.nm_entrada,entradinha.vl_entrada, entradinha.img_entrada)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
                                     </div>
                                 </div>
                             </div>

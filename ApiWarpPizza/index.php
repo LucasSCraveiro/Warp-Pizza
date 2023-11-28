@@ -25,6 +25,7 @@ $app->get('/bebidasMenu','getBebidasMenu');
 $app->post('/cadastrarPizza','cadastrarPizza');
 $app->post('/cadastrarBebida','cadastrarBebida');
 $app->post('/cadastrarEntrada','cadastrarEntrada');
+$app->post('/cadastrarPedido', 'cadastrarPedido');
 
 $app->post('/cadastrarUsuario','cadastrarUsuario');
 $app->post('/logarUsuario','logarUsuario');
@@ -228,6 +229,7 @@ function logarUsuario(Request $request, Response $response, array $args)
         $stmt = getConn()->prepare($sql);
         $stmt->execute();
         $enderecoUsuario = $stmt->fetchObject();
+        $idUsuario = $usuario->cd_usuario;
         $nomeUsuario = $usuario->nm_usuario;
         $tipoUsuario = $usuario->ds_tipo_usuario;
         $logradouroUsuario = $enderecoUsuario->nm_logradouro;
@@ -237,17 +239,28 @@ function logarUsuario(Request $request, Response $response, array $args)
         $estadoUsuario = $enderecoUsuario->sg_UF;
         $cepUsuario = $enderecoUsuario->cd_CEP;
         $resultado = "true";
-        return $response->withStatus(201)->withJson(["Usuario" => ["Existe" => $resultado, "Nome" => $nomeUsuario, "Tipo" => $tipoUsuario], "Endereco" => ["Logradouro" => $logradouroUsuario, "NumeroLogradouro" => $numeroLogradouroUsuario, "Bairro" => $bairroUsuario, "Cidade" => $cidadeUsuario, "Estado" => $estadoUsuario, "CEP" => $cepUsuario]]);
+        return $response->withStatus(201)->withJson(["Usuario" => ["Existe" => $resultado, "Nome" => $nomeUsuario, "Tipo" => $tipoUsuario, "ID" => $idUsuario], "Endereco" => ["Logradouro" => $logradouroUsuario, "NumeroLogradouro" => $numeroLogradouroUsuario, "Bairro" => $bairroUsuario, "Cidade" => $cidadeUsuario, "Estado" => $estadoUsuario, "CEP" => $cepUsuario]]);
     }
     else
     {
         $resultado = "false";
-        return $response->withStatus(201)->withJson(["Usuario" => ["Existe" => $resultado, "Nome" => $nomeUsuario, "Tipo" => $tipoUsuario], "Endereco" => ["Logradouro" => $logradouroUsuario, "NumeroLogradouro" => $numeroLogradouroUsuario, "Bairro" => $bairroUsuario, "Cidade" => $cidadeUsuario, "Estado" => $estadoUsuario, "CEP" => $cepUsuario]]);
+        return $response->withStatus(201)->withJson(["Usuario" => ["Existe" => $resultado, "Nome" => $nomeUsuario, "Tipo" => $tipoUsuario, "ID" => $idUsuario], "Endereco" => ["Logradouro" => $logradouroUsuario, "NumeroLogradouro" => $numeroLogradouroUsuario, "Bairro" => $bairroUsuario, "Cidade" => $cidadeUsuario, "Estado" => $estadoUsuario, "CEP" => $cepUsuario]]);
     }
     // $senhaBanco = $usuario->nm_senha_usuario;
     // var_dump($senhaBanco);
     // echo $usuario->nm_senha_usuario;
     // var_dump($senhaBanco);
+}
+
+function cadastrarPedido(Request $request, Response $response, array $args)
+{
+    $formulario = $request->getParsedBody();
+    $idUsuario = $formulario['body']['Usuario'];
+    $pedido = json_encode($formulario['body']['Pedido']);
+    $valor = $formulario['body']['Valor'];
+    $endereco = $formulario['body']['Endereco'];
+    $sql = "INSERT INTO tb_pedido (nm_items_pedido,vl_pedido,nm_endereco_pedido,cd_usuario) VALUES ('$pedido','$valor','$endereco','$idUsuario')";
+    $stmt = getConn()->query($sql);
 }
 
 $app->run();

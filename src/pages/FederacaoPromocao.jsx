@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { items } from "../components/CarrosselAlimentos";
 import { federacaoWarp } from "../components/Alimentos";
 import { useEffect } from "react";
+import Carrinho from "../components/Carrinho";
 
 function FederacaoPromocao()
 {
@@ -27,6 +28,14 @@ function FederacaoPromocao()
             document.getElementById('federacao').style.fontWeight='bold';
             document.getElementById('federacao').style.borderColor='#C8102E';
         }
+    }
+
+    function pegarItem(nome, valor, imagem)
+    {
+        // Carrinho.resetarCarrinho();
+        var item = {"nome": nome, "valor": valor, "imagem": imagem};
+        Carrinho.adicionarAoCarrinho(item);
+        console.log(localStorage.getItem("ValorCarrinho"));
     }
 
     useEffect(() => {
@@ -69,7 +78,7 @@ function FederacaoPromocao()
                                     </div>
                                     <hr className="w-full"></hr>
                                     <div className="flex justify-end pt-3">
-                                        <button className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
+                                        <button type="button" onClick={(e) => pegarItem(combo.nome,combo.valor,combo.imagem)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
                                     </div>
                                 </div>
                             </div>
