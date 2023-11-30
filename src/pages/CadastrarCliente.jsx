@@ -48,6 +48,7 @@ function CadastrarCliente()
                 if (resposta.data == "usuarioCadastrado")
                 {
                     alert("Usuário cadastrado com sucesso!");
+                    window.location.href = "http://localhost:5173/menuFuncionario";
                 }
                 else
                 {

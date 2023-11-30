@@ -90,7 +90,7 @@ function Entradinhas()
                                     </div>
                                     <hr className="w-full"></hr>
                                     <div className="flex justify-end pt-3">
-                                        <button type="button" onClick={(e) => pegarItem(entradinha.nm_entrada,entradinha.vl_entrada, entradinha.img_entrada)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
+                                        <button type="button" onClick={(e) => pegarItem(entradinha.nm_entrada,entradinha.vl_entrada, entradinha.img_entrada)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Adicionar ao carrinho</button>
                                     </div>
                                 </div>
                             </div>

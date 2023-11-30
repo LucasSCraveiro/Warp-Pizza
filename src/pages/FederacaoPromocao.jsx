@@ -78,7 +78,7 @@ function FederacaoPromocao()
                                     </div>
                                     <hr className="w-full"></hr>
                                     <div className="flex justify-end pt-3">
-                                        <button type="button" onClick={(e) => pegarItem(combo.nome,combo.valor,combo.imagem)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
+                                        <button type="button" onClick={(e) => pegarItem(combo.nome,combo.valor,combo.imagem)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Adicionar ao carrinho</button>
                                     </div>
                                 </div>
                             </div>

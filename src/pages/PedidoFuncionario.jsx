@@ -78,6 +78,8 @@ function PedidoFuncionario()
             {
                 const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarPedido', {body: body}, {headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
                 Carrinho.resetarCarrinho();
+                alert("Pedido realizado com sucesso!");
+                window.location.href = "http://localhost:5173/menuFuncionario";
             }
             catch(error)
             {
@@ -127,7 +129,7 @@ function PedidoFuncionario()
                                         </div>
                                         <hr className="w-full"></hr>
                                         <div className="flex justify-end pt-3">
-                                            <button type="button" onClick={(e) => pegarItem(pizza.nm_pizza,pizza.vl_pizza, pizza.img_pizza)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
+                                            <button type="button" onClick={(e) => pegarItem(pizza.nm_pizza,pizza.vl_pizza, pizza.img_pizza)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Adicionar ao carrinho</button>
                                         </div>
                                     </div>
                                 </div>
@@ -155,7 +157,7 @@ function PedidoFuncionario()
                                         </div>
                                         <hr className="w-full"></hr>
                                         <div className="flex justify-end pt-3">
-                                            <button type="button" onClick={(e) => pegarItem(bebida.nm_bebida,bebida.vl_bebida, bebida.img_bebida)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
+                                            <button type="button" onClick={(e) => pegarItem(bebida.nm_bebida,bebida.vl_bebida, bebida.img_bebida)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Adicionar ao carrinho</button>
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +185,7 @@ function PedidoFuncionario()
                                         </div>
                                         <hr className="w-full"></hr>
                                         <div className="flex justify-end pt-3">
-                                            <button type="button" onClick={(e) => pegarItem(entradinha.nm_entrada,entradinha.vl_entrada, entradinha.img_entrada)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
+                                            <button type="button" onClick={(e) => pegarItem(entradinha.nm_entrada,entradinha.vl_entrada, entradinha.img_entrada)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Adicionar ao carrinho</button>
                                         </div>
                                     </div>
                                 </div>

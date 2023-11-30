@@ -88,7 +88,7 @@ function Pizzas()
                                     </div>
                                     <hr className="w-full"></hr>
                                     <div className="flex justify-end pt-3">
-                                        <button type="button" onClick={(e) => pegarItem(pizza.nm_pizza,pizza.vl_pizza, pizza.img_pizza)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Personalizar</button>
+                                        <button type="button" onClick={(e) => pegarItem(pizza.nm_pizza,pizza.vl_pizza, pizza.img_pizza)} className="border border-black bg-white text-black px-3 py-1 rounded-full">Adicionar ao carrinho</button>
                                     </div>
                                 </div>
                             </div>

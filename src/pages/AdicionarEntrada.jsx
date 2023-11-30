@@ -35,6 +35,7 @@ function AdicionarEntrada(){
         {
             const resposta = await axios.post('http://localhost/Warp-Pizza/ApiWarpPizza/cadastrarEntrada', {body : body},{headers : {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}});
             alert(resposta.data);
+            window.location.href = "http://localhost:5173/menuFuncionario";
         }
         catch (error)
         {
